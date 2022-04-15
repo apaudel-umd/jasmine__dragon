@@ -220,7 +220,6 @@ class Worker:
             tea_rec(string): A tea recommendation
         """
     
-
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
 
@@ -271,3 +270,6 @@ class Waiter(Worker):
                 sufficient amount of money for their order.
         """
         pass
+
+if __name__ == "__main__":
+    teahouse = TeaHouse('Jasmine_Dragon')
