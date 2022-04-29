@@ -1,5 +1,5 @@
 SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
-# test
+
 class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
       
@@ -86,7 +86,7 @@ class Customer:
         order (set of tea): order of customer
         received (set of tea): their order that the waiter will give to them after receiving their order
     """
-    def __init__(name, money):
+    def __init__(self, name, money, order, received):
         """Initialize a customer object.
         
         Args:
@@ -95,7 +95,10 @@ class Customer:
             order(string list): order of customer
             received (string list): their order that the waiter will give to them after receiving their order
         """
-        pass
+        self.name = name
+        self.money = money
+        self.order = order
+        self.received = received
     
     def __str__(self):
         """Informal representation of a Customer object.
