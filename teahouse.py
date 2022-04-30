@@ -1,3 +1,5 @@
+from random import choice
+
 SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
 
 class TeaHouse:
@@ -13,8 +15,10 @@ class TeaHouse:
         
         Args:
             name(string): Name of the teaHouse
-        """   
-        pass
+        """ 
+        self.customers = []
+        self.teas = []
+        self.workers = []
     
     def add_teas(self, tea):
         """Add a new tea to the list teas available at this TeaHouse.
@@ -206,14 +210,15 @@ class Worker:
      Attributes:
         Worker.name(string): name of the worker
     """
-    def __init__(name):
+    def __init__(self, name, tea=None):
         """Initialize a Worker object.
         
         Args:
-            name(string): name of the worker   
+            name(string): name of the worker
+            tea (Tea): Worker's favorite tea. Deafults to none.  
         """
         pass
-    def recommend_tea(teaHouse):
+    def recommend_tea(self, teaHouse):
         """Worker will recommend a random tea available at the TeaHouse.
          
         Args:
@@ -229,15 +234,8 @@ class Cashier(Worker):
      Attributes:
         name(string): name of the worker
     """
-    def __init__(name):
-        """Initialize a Cashier object. Only Cashiers can received payment from a customer.
         
-        Args:
-            name(string): name of the worker   
-        """
-        pass
-    
-    def receive_payment(customer):
+    def receive_payment(self, customer):
         """Will take payment from a customer and return the any remaining money to the customer.
         
         Args:
@@ -247,6 +245,9 @@ class Cashier(Worker):
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
         """
         pass
+    
+    def recommend_tea(self, teaHouse):
+        return super().recommend_tea(teaHouse)
 
 class Waiter(Worker):
     """A Worker object.(There are two types of workers.)
@@ -254,15 +255,8 @@ class Waiter(Worker):
      Attributes:
         name(string): name of the worker
     """
-    def __init__(name):
-        """Initialize a Waiter object. Waiters can only take orders of customers.
-        
-        Args:
-            name(string): name of the worker   
-        """
-        pass
     
-    def takeOrder(order):
+    def takeOrder(self, order):
         """Checks if a customer has enough money for their order then takes order of a customer if possible.
         
         Args:
@@ -273,6 +267,9 @@ class Waiter(Worker):
                 sufficient amount of money for their order.
         """
         pass
+    
+    def recommend_tea(self, teaHouse):
+        return super().recommend_tea(teaHouse)
 
 if __name__ == "__main__":
     teahouse = TeaHouse('Jasmine_Dragon')
