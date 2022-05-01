@@ -146,7 +146,7 @@ class Customer:
         Return:
             Set of the tea that the customer has ordered but hasn't received yet.
         """
-        pass
+        return self.order - self.received
     
     def pay_order(worker):
         """Asks a worker for the bill and pays the amount (according to the received set).
