@@ -57,7 +57,8 @@ class TeaHouse:
         Returns:
             The sorted list of customers.    
         """
-        pass
+        sorted(self.customers, key)
+        
     
     def current_customers(self):
         """Look at the customers attribute and show the names of all the customers at the TeaHouse.
@@ -281,7 +282,7 @@ class Waiter(Worker):
             
         Returns: 
             The order has been taken or state that the customer does not have 
-                sufficient amount of money for their order.
+            sufficient amount of money for their order.
         """
         pass
     
