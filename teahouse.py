@@ -1,4 +1,6 @@
-SIZES_PRICE = ("small", 2.50), ("medium", 4.00),("large", 5.50)
+from random import choice
+
+SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
 
 class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
@@ -13,8 +15,10 @@ class TeaHouse:
         
         Args:
             name(string): Name of the teaHouse
-        """   
-        pass
+        """ 
+        self.customers = []
+        self.teas = []
+        self.workers = []
     
     def add_teas(self, tea):
         """Add a new tea to the list teas available at this TeaHouse.
@@ -86,7 +90,7 @@ class Customer:
         order (set of tea): order of customer
         received (set of tea): their order that the waiter will give to them after receiving their order
     """
-    def __init__(name, money):
+    def __init__(self, name, money, order, received):
         """Initialize a customer object.
         
         Args:
@@ -95,7 +99,10 @@ class Customer:
             order(string list): order of customer
             received (string list): their order that the waiter will give to them after receiving their order
         """
-        pass
+        self.name = name
+        self.money = money
+        self.order = order
+        self.received = received
     
     def __str__(self):
         """Informal representation of a Customer object.
@@ -203,14 +210,17 @@ class Worker:
      Attributes:
         Worker.name(string): name of the worker
     """
-    def __init__(name):
+    def __init__(name, tea=None):
         """Initialize a Worker object.
         
         Args:
-            name(string): name of the worker   
+            name(string): name of the worker
+            tea (Tea): Worker's favorite tea. Defaults to none.  
         """
-        pass
-    def recommend_tea(teaHouse):
+        Worker.name = name
+        Worker.tea = tea
+    
+    def recommend_tea(self, teaHouse):
         """Worker will recommend a random tea available at the TeaHouse.
          
         Args:
@@ -220,7 +230,6 @@ class Worker:
             tea_rec(string): A tea recommendation
         """
     
-
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
 
@@ -234,8 +243,8 @@ class Cashier(Worker):
             name(string): name of the worker   
         """
         Cashier.name = name
-    
-    def receive_payment(customer):
+         
+    def receive_payment(self, customer):
         """Will take payment from a customer and return the any remaining money to the customer.
         
         Args:
@@ -245,6 +254,9 @@ class Cashier(Worker):
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
         """
         pass
+    
+    def recommend_tea(self, teaHouse):
+        return super().recommend_tea(teaHouse)
 
 class Waiter(Worker):
     """A Worker object.(There are two types of workers.)
@@ -259,8 +271,9 @@ class Waiter(Worker):
             name(string): name of the worker   
         """
         Waiter.name = name
+
     
-    def takeOrder(order):
+    def takeOrder(self, order):
         """Checks if a customer has enough money for their order then takes order of a customer if possible.
         
         Args:
@@ -271,3 +284,9 @@ class Waiter(Worker):
                 sufficient amount of money for their order.
         """
         pass
+    
+    def recommend_tea(self, teaHouse):
+        return super().recommend_tea(teaHouse)
+
+if __name__ == "__main__":
+    teahouse = TeaHouse('Jasmine_Dragon')
