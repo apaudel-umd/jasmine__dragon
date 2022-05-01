@@ -57,6 +57,7 @@ class TeaHouse:
         Returns:
             The sorted list of customers.    
         """
+        # sort customers names in alphabetical order
         sorted(self.customers, key)
         
     
