@@ -285,7 +285,10 @@ class Waiter(Worker):
             The order has been taken or state that the customer does not have 
             sufficient amount of money for their order.
         """
-        pass
+        if Customer.money >= SIZES_PRICE:
+            ...
+        else:
+            print("Customer does not have sufficient amount of money for their order.")
     
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
