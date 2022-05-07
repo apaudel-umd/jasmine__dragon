@@ -10,6 +10,7 @@ class TeaHouse:
         teas(list of Tea objects): teas that are available to order
         workers(list of Worker objects): workers at the TeaHouse
     """
+    
     def __init__(self, name):
         """Initialize a TeaHouse object.
         
@@ -19,6 +20,7 @@ class TeaHouse:
         self.customers = []
         self.teas = []
         self.workers = []
+    
     
     def add_teas(self, tea):
         """Add a new tea to the list teas available at this TeaHouse.
@@ -32,7 +34,7 @@ class TeaHouse:
         Side effects:
             Updating the teas attribute of TeaHouse.
         """
-        pass
+        return self.teas.append(tea)
     
     def add_customers(self, customer):
         """Add a new customer to the list customers at the TeaHouse.
@@ -46,7 +48,7 @@ class TeaHouse:
         Side effects:
             Updating the customers attribute of TeaHouse.
         """
-        pass
+        return self.customers.append(customer)
     
     def sorting_customers(self, key):
         """Sort the list of customers by the key provided.
@@ -67,7 +69,11 @@ class TeaHouse:
         Returns:
             customer_names(string): f-string of all the customers at the TeaHouse.
         """
-        pass
+        
+        customer_names = []
+        for c in self.customers:
+            customer_names.append(c.name)
+        return customer_names
     
     def add_workers(self, worker):
         """Add a new worker to the list workerss at the TeaHouse.
@@ -81,7 +87,7 @@ class TeaHouse:
         Side effects:
             Updating the workers attribute of TeaHouse.
         """
-        pass
+        return self.workers.append(worker)
 
 class Customer:
     """A customer object.
@@ -92,7 +98,7 @@ class Customer:
         order (set of tea): order of customer
         received (set of tea): their order that the waiter will give to them after receiving their order
     """
-    def __init__(self, name, money, order, received):
+    def __init__(self, name, money, order, received): #should not take order/received 
         """Initialize a customer object.
         
         Args:
@@ -103,8 +109,8 @@ class Customer:
         """
         self.name = name
         self.money = money
-        self.order = order
-        self.received = received
+        self.orders = order  # should be empty set
+        self.received = received  # should be empty set
     
     def __str__(self):
         """Informal representation of a Customer object.
@@ -126,15 +132,17 @@ class Customer:
         
         pass
     
-    def addOrder(order):
+    def addOrder(self, order, waiter):
         """Add a order to a customer object if customer has enough money.
         
         Args:
             order(tea): order of customer
+            waiter (waiter): the worker taking your order
         """
-        pass
+        if waiter.takeOrder(order) is True:
+            self.orders.add(order)
     
-    def orderReceived(received):
+    def orderReceived(self, received):
         """Waiter has given a customer object their order.
         
         Args: 
@@ -150,7 +158,7 @@ class Customer:
         """
         return self.order - self.received
     
-    def pay_order(worker):
+    def pay_order(self, worker):
         """Asks a worker for the bill and pays the amount (according to the received set).
         
         Return:
