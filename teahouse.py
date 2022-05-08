@@ -98,19 +98,17 @@ class Customer:
         order (set of tea): order of customer
         received (set of tea): their order that the waiter will give to them after receiving their order
     """
-    def __init__(self, name, money, order, received): #should not take order/received 
+    def __init__(self, name, money):
         """Initialize a customer object.
         
         Args:
             name(string): name of customer
             money (float): how much money a customer has
-            order(string list): order of customer
-            received (string list): their order that the waiter will give to them after receiving their order
         """
         self.name = name
         self.money = money
-        self.orders = order  # should be empty set
-        self.received = received  # should be empty set
+        self.orders = set()
+        self.received = set()
     
     def __str__(self):
         """Informal representation of a Customer object.
@@ -121,7 +119,7 @@ class Customer:
         Return:
             string of formal representation of the Customer object    
         """
-        pass
+        print(f'Customer Name: {self.name!r}\nMoney: {self.money!r}\nOrders:{self.orders!r}\nReceived: {self.received!r}')
     
     def __repr__(self):
         """Formal representation of a Customer object.
@@ -129,8 +127,7 @@ class Customer:
         Return:
             string of formal representation of the Customer object
         """
-        
-        pass
+        print(f'Customer({self.name!r}, {self.money!r})')
     
     def addOrder(self, order, waiter):
         """Add a order to a customer object if customer has enough money.
@@ -178,7 +175,7 @@ class Tea:
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
     """
-    def __init__(type, temp = "hot", size = "medium"):
+    def __init__(self, type, temp = "hot", size = "medium"):
         """Initialize a Tea object. 
         
         Args: 
@@ -220,7 +217,7 @@ class Worker:
      Attributes:
         Worker.name(string): name of the worker
     """
-    def __init__(name, tea=None):
+    def __init__(self, name, tea=None):
         """Initialize a Worker object.
         
         Args:
@@ -246,7 +243,7 @@ class Cashier(Worker):
      Attributes:
         name(string): name of the worker
     """
-    def __init__(name):
+    def __init__(self, name):
         """Initialize a Cashier object. Only Cashiers can received payment from a customer.
         
         Args:
@@ -274,7 +271,7 @@ class Waiter(Worker):
      Attributes:
         name(string): name of the worker
     """
-    def __init__(name):
+    def __init__(self, name):
         """Initialize a Waiter object. Waiters can only take orders of customers.
         
         Args:
