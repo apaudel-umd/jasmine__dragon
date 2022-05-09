@@ -211,6 +211,17 @@ class Tea:
             self.size = newSize
         elif(newAdd_in != None):     
             self.add_in = newAdd_in
+            
+    def __str__(self):
+            """Informal representation of a Tea object.
+            
+            The format of informal representation will be: 
+                "Tea Order: Type:___" + "Temperature:___ + "Size:___" + "add_in:____ " 
+            
+            Return:
+                string of informal representation of the tea object    
+            """
+            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} add_in: {self.add_in!r}')
                  
 
 class Worker:
