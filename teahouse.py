@@ -190,6 +190,29 @@ class Tea:
         self.temp = temp
         self.size = size 
         self.add_in = add_in
+        
+    def updateTea(self, newType = None, newTemp = None, newSize = None, newAdd_in = None):
+         """Change one or many attributes of the tea object.
+        
+        Args:
+            newType(string): new type of the tea object.
+            newTemp(string): new temperature of the tea object.
+            newSize(string): new size of the tea object.
+            newAdd_in(string): new add_in of the tea object.
+            
+        Side effect:
+            Changes the desired attribute(s) of the tea object.
+        """
+        if(newType != None):
+            self.type = newType    
+        elif(newTemp = None):
+            self.temp = newTemp
+        elif(newTemp = None):   
+            self.size = newSize
+        elif(newTemp = None):     
+            self.add_in = newAdd_in
+                 
+
     
     def changeAdd_in(self, newAdd_in):
         """Change the add_in attribute of the tea object.
