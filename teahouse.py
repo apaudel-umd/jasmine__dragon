@@ -176,7 +176,7 @@ class Tea:
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
     """
-    def __init__(self, type, temp = "hot", size = "medium", add_in = None):
+    def __init__(self, type, temp = "hot", size = "medium", add_in = "Nothing"):
         """Initialize a Tea object. 
         
         Args: 
@@ -191,7 +191,7 @@ class Tea:
         self.size = size 
         self.add_in = add_in
         
-    def updateTea(self, newType = None, newTemp = None, newSize = None, newAdd_in = None):
+    def updateTea(self, newType = "", newTemp = None, newSize = None, newAdd_in = ""):
         """Change one or many attributes of the tea object.
         
         Args:

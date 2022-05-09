@@ -21,6 +21,6 @@ def main():
     
     tea_list = (tea1, tea2, tea3)
     
-    print(tea_list)
+    print(tea_list.__str__())
     
     
