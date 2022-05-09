@@ -192,7 +192,7 @@ class Tea:
         self.add_in = add_in
         
     def updateTea(self, newType = None, newTemp = None, newSize = None, newAdd_in = None):
-         """Change one or many attributes of the tea object.
+        """Change one or many attributes of the tea object.
         
         Args:
             newType(string): new type of the tea object.
@@ -204,54 +204,14 @@ class Tea:
             Changes the desired attribute(s) of the tea object.
         """
         if(newType != None):
-            self.type = newType    
-        elif(newTemp = None):
+            self.type = newType               
+        elif(newTemp != None):
             self.temp = newTemp
-        elif(newTemp = None):   
+        elif(newSize != None):   
             self.size = newSize
-        elif(newTemp = None):     
+        elif(newAdd_in != None):     
             self.add_in = newAdd_in
                  
-
-    
-    def changeAdd_in(self, newAdd_in):
-        """Change the add_in attribute of the tea object.
-        
-        Args:
-            newAdd_in(string): new add_in of the tea object.
-            
-        Return:
-            Current tea object.
-        """  
-        self.add_in = newAdd_in
-        return self 
-    
-    def changeTemp(self, newTemp):
-        """Change the temperature attribute of the tea object.
-        
-        Args:
-            newTemp(string): new temperature of the tea object.
-            
-        Return:
-            Current tea object.
-        """
-        self.temp = newTemp
-        return self
-    
-    def changeSize(self, newSize):
-        """Change the size attribute of the tea object.
-        
-        Args:
-            newSize(string): new temperature of the tea object.
-            
-        Return:
-            Current tea object.
-            
-        Side effects:
-            Changes the size and price attributes of the tea object.
-        """
-        self.size = newSize
-        return self
 
 class Worker:
     """A Worker object.(There are two types of workers: Cashiers and Waiters.)
