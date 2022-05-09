@@ -1,3 +1,4 @@
+from ipaddress import summarize_address_range
 from random import choice
 
 SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
@@ -175,16 +176,20 @@ class Tea:
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
     """
-    def __init__(self, type, temp = "hot", size = "medium"):
+    def __init__(self, type, temp = "hot", size = "medium", add_in = None):
         """Initialize a Tea object. 
         
         Args: 
             type(string): The type of tea
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
+            add_in(string): default value is None, options are: boba, sugar, honey, and sweetner
             
         """
-        pass
+        self.type = type
+        self.temp = temp
+        self.size = size 
+        self.add_in = add_in
     
     def changeTemp(self, newTemp):
         """Change the temperature attribute of the tea object.
