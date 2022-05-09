@@ -191,6 +191,18 @@ class Tea:
         self.size = size 
         self.add_in = add_in
     
+    def changeAdd_in(self, newAdd_in):
+        """Change the add_in attribute of the tea object.
+        
+        Args:
+            newAdd_in(string): new add_in of the tea object.
+            
+        Return:
+            Current tea object.
+        """  
+        self.add_in = newAdd_in
+        return self 
+    
     def changeTemp(self, newTemp):
         """Change the temperature attribute of the tea object.
         
@@ -200,7 +212,8 @@ class Tea:
         Return:
             Current tea object.
         """
-        pass
+        self.temp = newTemp
+        return self
     
     def changeSize(self, newSize):
         """Change the size attribute of the tea object.
@@ -214,7 +227,8 @@ class Tea:
         Side effects:
             Changes the size and price attributes of the tea object.
         """
-        pass
+        self.size = newSize
+        return self
 
 class Worker:
     """A Worker object.(There are two types of workers: Cashiers and Waiters.)
