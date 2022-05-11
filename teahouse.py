@@ -218,11 +218,19 @@ class Tea:
             self.temp = newTemp
         elif(newSize != None):   
             self.size = newSize
+            #need to also update price attribute if size of tea changed
+            a,b,c = SIZE_PRICE
+            if newSize == "small":
+                self.price = a
+            elif newSize == "medium":
+                self.price = b
+            else:
+                self.price = c
         elif(newAdd_in != None):     
             self.add_in = newAdd_in
             
-        def combine(self, combineType = "", combineAdd_in = ""): #unable to combine temp and size, max combine 2
-            pass
+    def combine(self, combineType = "", combineAdd_in = ""): #unable to combine temp and size, max combine 2
+        pass
                 
             
     def __str__(self):
