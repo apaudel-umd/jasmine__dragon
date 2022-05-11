@@ -60,9 +60,7 @@ class TeaHouse:
         Returns:
             The sorted list of customers.    
         """
-        # sort customers names in alphabetical order
-        sorted(self.customers, key)
-        
+        return sorted(self.customers, key)
     
     def current_customers(self):
         """Look at the customers attribute and show the names of all the customers at the TeaHouse.
@@ -253,6 +251,7 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
+        pass
     
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
@@ -268,7 +267,7 @@ class Cashier(Worker):
         """
         Cashier.name = name
          
-    def receive_payment(self, customer):
+    def receive_payment(self, customer): #nikhita
         """Will take payment from a customer and return the any remaining money to the customer.
         
         Args:
@@ -307,7 +306,10 @@ class Waiter(Worker):
             The order has been taken or state that the customer does not have 
             sufficient amount of money for their order.
         """
-        return True if Customer.money >= SIZES_PRICE else print("Customer does not have sufficient amount of money for their order.")
+        total = 0
+        for x in order:
+            total = total + x.price
+        return True if Customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
