@@ -1,7 +1,9 @@
 from ipaddress import summarize_address_range
 from random import choice
 
-SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
+#SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
+
+SIZE_PRICE = [2.50, 4.00, 5.50]
 
 class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
@@ -173,6 +175,7 @@ class Tea:
             price(float): The prices of the tea, which is determined by the size of tea.
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
+            price(float): The price of the tea based on its size.
     """
     def __init__(self, type, temp = "hot", size = "medium", add_in = "Nothing"):
         """Initialize a Tea object. 
@@ -184,10 +187,18 @@ class Tea:
             add_in(string): default value is None, options are: boba, sugar, honey, and sweetner
             
         """
+        a,b,c = SIZE_PRICE
+        if size == "small":
+            self.price = a
+        elif size == "medium":
+            self.price = b
+        else:
+            self.price = c
         self.type = type
         self.temp = temp
         self.size = size 
         self.add_in = add_in
+        
         
     def updateTea(self, newType = "", newTemp = None, newSize = None, newAdd_in = ""):
         """Change one or many attributes of the tea object.
