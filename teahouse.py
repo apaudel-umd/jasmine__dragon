@@ -247,6 +247,7 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
+        pass
     
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
@@ -262,7 +263,7 @@ class Cashier(Worker):
         """
         Cashier.name = name
          
-    def receive_payment(self, customer):
+    def receive_payment(self, customer): #nikhita
         """Will take payment from a customer and return the any remaining money to the customer.
         
         Args:
