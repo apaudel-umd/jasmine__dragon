@@ -301,7 +301,10 @@ class Waiter(Worker):
             The order has been taken or state that the customer does not have 
             sufficient amount of money for their order.
         """
-        return True if Customer.money >= order else print("Customer does not have sufficient amount of money for their order.")
+        total = 0
+        for x in order:
+            total = total + x.price
+        return True if Customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
