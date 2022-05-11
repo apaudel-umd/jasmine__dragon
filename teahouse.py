@@ -212,6 +212,10 @@ class Tea:
         elif(newAdd_in != None):     
             self.add_in = newAdd_in
             
+        def combine(self, combineType = "", combineAdd_in = ""): #unable to combine temp and size, max combine 2
+            pass
+                
+            
     def __str__(self):
             """Informal representation of a Tea object.
             
