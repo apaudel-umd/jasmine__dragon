@@ -1,5 +1,6 @@
 from ipaddress import summarize_address_range
 from random import choice
+import pandas as pd
 
 #SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
 
@@ -23,6 +24,14 @@ class TeaHouse:
         self.customers = []
         self.teas = []
         self.workers = []
+        self.order_history = pd.read_csv('order_history', sep=',', encoding='utf-8')
+        state = input('Are you a worker, or a customer?\n> ')
+        if state.lower() == 'worker':
+            user = input('Welcome back! Please enter your name:\n> ')
+        elif state.lower() == 'customer':
+            user = input('Welcome to the Jasmine Dragon! Please enter your name:\n> ')
+        else:
+            raise ValueError('Please pick one of the two options!')
     
     
     def add_teas(self, tea):
@@ -44,14 +53,12 @@ class TeaHouse:
 
         Args:
             customer(Customer): new customer to add to the list of customers
-            
-        Returns:
-            The updated list of customers.
         
         Side effects:
             Updating the customers attribute of TeaHouse.
         """
-        return self.customers.append(customer)
+        self.customers.append(customer)
+        self.order_history + customer.order + customer.received
     
     def sorting_customers(self, key):
         """Sort the list of customers by the key provided.
@@ -333,5 +340,9 @@ class Waiter(Worker):
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
 
+
+def main():
+    TeaHouse('Jasmine_Dragon')
+    
 if __name__ == "__main__":
-    teahouse = TeaHouse('Jasmine_Dragon')
+    main()
