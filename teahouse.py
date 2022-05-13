@@ -294,7 +294,7 @@ class Cashier(Worker):
         Cashier.name = name
          
     def receive_payment(self, customer): #nikhita
-        """Will take payment from a customer and return the any remaining money to the customer.
+        """Will take payment from a customer and return any remaining money to the customer.
         
         Args:
             customer(Customer): customer that wishes to pay their bill
@@ -302,7 +302,11 @@ class Cashier(Worker):
         Return:
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
         """
-        pass
+        # money variable is how much money a customer has. is located in the Customer class
+        payment = customer.money
+        
+        has_paid = ""
+        return has_paid
     
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
