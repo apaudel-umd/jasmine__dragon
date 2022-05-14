@@ -296,7 +296,7 @@ class Cashier(Worker):
         """
         Cashier.name = name
          
-    def receive_payment(self, customer): #nikhita
+    def receive_payment(self, customer): 
         """Will take payment from a customer and return any remaining money to the customer.
         
         Args:
