@@ -305,10 +305,21 @@ class Cashier(Worker):
         Return:
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
         """
-        # money variable is how much money a customer has. is located in the Customer class
-        payment = customer.money
-        
         has_paid = ""
+        for i in customer.orders:
+            if i == "small":
+                customer.money -= SIZE_PRICE[0]
+            elif i == "medium":
+                customer.money -= SIZE_PRICE[1]
+            elif i == "large":
+                customer.money -= SIZE_PRICE[2]
+        if customer.money < 0:
+            has_paid = "The bill was not paid"
+        elif customer.money == 0:
+            has_paid = "The bill was paid. The customer has no money left"
+        else:
+            has_paid = "The bill was paid. The customer has money left"
+            
         return has_paid
     
     def recommend_tea(self, teaHouse):
