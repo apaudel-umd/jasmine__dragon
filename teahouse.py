@@ -27,9 +27,13 @@ class TeaHouse:
         self.order_history = pd.read_csv('order_history.csv', sep=',', encoding='utf-8')
         state = input('Are you a worker, or a customer?\n> ')
         if state.lower() == 'worker':
-            user = input('Welcome back! Please enter your name:\n> ')
+            user = Worker(input('Welcome back! Please enter your name:\n> '))
+            user.interface()
         elif state.lower() == 'customer':
-            user = input('Welcome to the Jasmine Dragon! Please enter your name:\n> ')
+            user = Customer(input('Welcome to the Jasmine Dragon! Please enter your name:\n> '), 10.00)
+            #current_user = Customer(user, 10.00)
+            print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
+            user.interface()
         else:
             raise ValueError('Please pick one of the two options!')
     
