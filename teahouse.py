@@ -2,9 +2,9 @@ from ipaddress import summarize_address_range
 from random import choice
 import pandas as pd
 
-#SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
-
 SIZE_PRICE = [2.50, 4.00, 5.50]
+TEA_TYPE = ['black', 'green', 'oolong', 'jamine', 'peach', 'tarro']
+ADD_INS = ['honey', 'sweetner', 'boba']
 
 class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
@@ -24,7 +24,7 @@ class TeaHouse:
         self.customers = []
         self.teas = []
         self.workers = []
-        self.order_history = pd.read_csv('order_history', sep=',', encoding='utf-8')
+        self.order_history = pd.read_csv('order_history.csv', sep=',', encoding='utf-8')
         state = input('Are you a worker, or a customer?\n> ')
         if state.lower() == 'worker':
             user = input('Welcome back! Please enter your name:\n> ')
