@@ -28,12 +28,11 @@ class TeaHouse:
         state = input('Are you a worker, or a customer?\n> ')
         if state.lower() == 'worker':
             user = Worker(input('Welcome back! Please enter your name:\n> '))
-            user.interface()
+            #user.interface()
         elif state.lower() == 'customer':
-            user = Customer(input('Welcome to the Jasmine Dragon! Please enter your name:\n> '), 10.00)
-            #current_user = Customer(user, 10.00)
+            user = Customer(input(f'Welcome to the {name}! Please enter your name:\n> '), 10.00)
             print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
-            user.interface()
+            #user.interface()
         else:
             raise ValueError('Please pick one of the two options!')
     
@@ -350,7 +349,7 @@ class Waiter(Worker):
 
 
 def main():
-    TeaHouse('Jasmine_Dragon')
+    th = TeaHouse('Jasmine_Dragon')
     
 if __name__ == "__main__":
     main()
