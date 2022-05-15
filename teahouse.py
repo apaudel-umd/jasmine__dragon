@@ -22,6 +22,9 @@ class TeaHouse:
         
         Args:
             name(string): Name of the teaHouse
+            
+        Raises:
+            ValueError: The choice should be between customer and worker.
         """ 
         self.customers = []
         self.teas = []
@@ -106,8 +109,11 @@ class TeaHouse:
         Args:
             column (string): the name of the column to plot
         
-        Returns:
-            Plots the graph.   
+        Side effects:
+            Plots the graph in a new window.
+        
+        Raises:
+            ValueError: the options should be one of the 4 columns listed  
         '''
         a = self.order_history.groupby(['tea_type']).size()
         b = self.order_history.groupby(['tea_temp']).size()
@@ -122,6 +128,8 @@ class TeaHouse:
             sns.barplot(x=c.index, y=c.values)
         elif column == 'add_in':
             sns.barplot(x=d.index, y=d.values)
+        else:
+            raise ValueError('Please enter one of these options!\ntea_type\ntea_temp\ntea_size\nadd_in')
         plt.show()
             
 
