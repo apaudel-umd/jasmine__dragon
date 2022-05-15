@@ -150,21 +150,6 @@ class Customer:
         if waiter.takeOrder(order) is True:
             self.orders.add(order)
     
-    def orderReceived(self, received):
-        """Waiter has given a customer object their order.
-        
-        Args: 
-            received(tea): their order that the waiter will give to them after receiving their order
-        """
-        pass
-    
-    def remaining_order(self):
-        """Compare the order set and received set to see how much of their order a customer still needs to receive.
-        
-        Return:
-            Set of the tea that the customer has ordered but hasn't received yet.
-        """
-        return self.order - self.received
     
     def pay_order(self, worker):
         """Asks a worker for the bill and pays the amount (according to the received set).
@@ -295,6 +280,7 @@ class Cashier(Worker):
             name(string): name of the worker   
         """
         Cashier.name = name
+        
          
     def receive_payment(self, customer): 
         """Will take payment from a customer and return any remaining money to the customer.
@@ -339,6 +325,22 @@ class Waiter(Worker):
         """
         Waiter.name = name
 
+    def giveOrder(customer):
+        """ Take the order of a customer.
+        Args:
+            customer(Customer): customer object.
+            
+        Side effect:
+            Changes the order and received attributes of the customer object.
+        
+        """
+        #goes through the set of teas that the customer has ordered and 
+        #gives the customer their orders(move their set of teas to the received set)
+        for t in customer.order:
+            customer.received.add(t)
+        
+        #clear the order set after completing order
+        customer.order = customer.order - customer.received
     
     def takeOrder(self, order):
         """Checks if a customer has enough money for their order then takes order of a customer if possible.
