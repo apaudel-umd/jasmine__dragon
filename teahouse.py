@@ -175,21 +175,6 @@ class Customer:
         if waiter.takeOrder(order) is True:
             self.orders.add(order)
     
-    def orderReceived(self, received):
-        """Waiter has given a customer object their order.
-        
-        Args: 
-            received(tea): their order that the waiter will give to them after receiving their order
-        """
-        pass
-    
-    def remaining_order(self):
-        """Compare the order set and received set to see how much of their order a customer still needs to receive.
-        
-        Return:
-            Set of the tea that the customer has ordered but hasn't received yet.
-        """
-        return self.order - self.received
     
     def pay_order(self, worker):
         """Asks a worker for the bill and pays the amount (according to the received set).
@@ -305,7 +290,9 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
-        pass
+        #need to make random tea
+        tea_reco = teaHouse.tea[0]
+        f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} that has {tea_reco.add_in}"
     
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
@@ -320,8 +307,9 @@ class Cashier(Worker):
             name(string): name of the worker   
         """
         Cashier.name = name
+        
          
-    def receive_payment(self, customer): #nikhita
+    def receive_payment(self, customer): 
         """Will take payment from a customer and return any remaining money to the customer.
         
         Args:
@@ -330,10 +318,21 @@ class Cashier(Worker):
         Return:
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
         """
-        # money variable is how much money a customer has. is located in the Customer class
-        payment = customer.money
-        
         has_paid = ""
+        for i in customer.orders:
+            if i == "small":
+                customer.money -= SIZE_PRICE[0]
+            elif i == "medium":
+                customer.money -= SIZE_PRICE[1]
+            elif i == "large":
+                customer.money -= SIZE_PRICE[2]
+        if customer.money < 0:
+            has_paid = "The bill was not paid"
+        elif customer.money == 0:
+            has_paid = "The bill was paid. The customer has no money left"
+        else:
+            has_paid = "The bill was paid. The customer has money left"
+            
         return has_paid
     
     def recommend_tea(self, teaHouse):
@@ -353,6 +352,22 @@ class Waiter(Worker):
         """
         Waiter.name = name
 
+    def giveOrder(customer):
+        """ Take the order of a customer.
+        Args:
+            customer(Customer): customer object.
+            
+        Side effect:
+            Changes the order and received attributes of the customer object.
+        
+        """
+        #goes through the set of teas that the customer has ordered and 
+        #gives the customer their orders(move their set of teas to the received set)
+        for t in customer.order:
+            customer.received.add(t)
+        
+        #clear the order set after completing order
+        customer.order = customer.order - customer.received
     
     def takeOrder(self, order):
         """Checks if a customer has enough money for their order then takes order of a customer if possible.
