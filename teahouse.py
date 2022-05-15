@@ -453,7 +453,7 @@ def main():
     c1 = Customer('Jon', 10.25)
     state = input('Are you a worker, or a customer?\n> ')
     if state.lower() == 'worker':
-        user = Worker(input('Welcome back! Please enter your name:\n> '))
+        user = Cashier(input('Welcome back! Please enter your name:\n> '))
         user.run(th)
     elif state.lower() == 'customer':
         user = Customer(input(f'Welcome to the {th.name}! Please enter your name:\n> '), 10.00)
