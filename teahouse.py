@@ -1,6 +1,8 @@
 from ipaddress import summarize_address_range
 from random import choice
 import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 SIZE_PRICE = [2.50, 4.00, 5.50]
 TEA_TYPE = ['black', 'green', 'oolong', 'jamine', 'peach', 'tarro']
@@ -28,11 +30,9 @@ class TeaHouse:
         state = input('Are you a worker, or a customer?\n> ')
         if state.lower() == 'worker':
             user = Worker(input('Welcome back! Please enter your name:\n> '))
-            #user.interface()
         elif state.lower() == 'customer':
             user = Customer(input(f'Welcome to the {name}! Please enter your name:\n> '), 10.00)
             print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
-            #user.interface()
         else:
             raise ValueError('Please pick one of the two options!')
     
@@ -99,6 +99,31 @@ class TeaHouse:
             Updating the workers attribute of TeaHouse.
         """
         return self.workers.append(worker)
+    
+    def plot_data(self, column):
+        ''' Uses pandas and seaborn to plot the data from order_history. 
+        
+        Args:
+            column (string): the name of the column to plot
+        
+        Returns:
+            Plots the graph.   
+        '''
+        a = self.order_history.groupby(['tea_type']).size()
+        b = self.order_history.groupby(['tea_temp']).size()
+        c = self.order_history.groupby(['tea_size']).size()
+        d = self.order_history.groupby(['add_in']).size()
+        
+        if column == 'tea_type':
+            sns.barplot(x=a.index, y=a.values)
+        elif column == 'tea_temp':
+            sns.barplot(x=b.index, y=b.values)
+        elif column == 'tea_size':
+            sns.barplot(x=c.index, y=c.values)
+        elif column == 'add_in':
+            sns.barplot(x=d.index, y=d.values)
+        plt.show()
+            
 
 class Customer:
     """A customer object.
@@ -350,6 +375,9 @@ class Waiter(Worker):
 
 def main():
     th = TeaHouse('Jasmine_Dragon')
+    th.plot_data(input('What data would you like to see?\n>'))
+    
+    
     
 if __name__ == "__main__":
     main()
