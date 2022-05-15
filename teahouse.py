@@ -340,7 +340,7 @@ class Cashier(Worker):
         
          
     def receive_payment(self, customer): 
-        """Will take payment from a customer and return any remaining money to the customer.
+        """Will take payment from a customer 
         
         Args:
             customer(Customer): customer that wishes to pay their bill
