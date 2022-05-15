@@ -295,8 +295,8 @@ class Worker:
             name(string): name of the worker
             tea (Tea): Worker's favorite tea. Defaults to none.  
         """
-        Worker.name = name
-        Worker.tea = tea
+        self.name = name
+        self.tea = tea
     
     def recommend_tea(self, teaH):
         """Worker will recommend a random tea available at the TeaHouse.
@@ -336,7 +336,7 @@ class Cashier(Worker):
         Args:
             name(string): name of the worker   
         """
-        Cashier.name = name
+        self.name = name
         
          
     def receive_payment(self, customer): 
