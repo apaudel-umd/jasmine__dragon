@@ -149,7 +149,7 @@ class Customer:
         self.orders = set()
         self.received = set()
     
-    def __str__(self):
+    def __str__(self): #add price #update docstring
         """Informal representation of a Customer object.
         
         The format of informal representation will be: 
@@ -179,7 +179,7 @@ class Customer:
             self.orders.add(order)
     
     
-    def pay_order(self, worker):
+    def pay_order(self, worker): #ashley
         """Asks a worker for the bill and pays the amount (according to the received set).
         
         Return:
@@ -295,8 +295,8 @@ class Worker:
             name(string): name of the worker
             tea (Tea): Worker's favorite tea. Defaults to none.  
         """
-        Worker.name = name
-        Worker.tea = tea
+        self.name = name
+        self.tea = tea
     
     def recommend_tea(self, teaH):
         """Worker will recommend a random tea available at the TeaHouse.
@@ -336,7 +336,7 @@ class Cashier(Worker):
         Args:
             name(string): name of the worker   
         """
-        Cashier.name = name
+        self.name = name
         
          
     def receive_payment(self, customer): 
