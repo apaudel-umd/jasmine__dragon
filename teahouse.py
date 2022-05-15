@@ -307,14 +307,10 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
-        teas_set_size = len(teaH)-1
-        
-        
-        #pick a random number that is between 0 and the TeaHouse teas set size
-        rand_tea = random.random() % teas_set_size
+
         
         #random tea at the teaHouse
-        tea_reco = teaH.tea[rand_tea]
+        tea_reco =   choice(teaH)
         
         if tea_reco.add_in == "Nothing":
             return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
