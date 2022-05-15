@@ -9,6 +9,6 @@ INST326 Final Project
 
 
 ## Attribution:
-**Katherine Argente:**\n
-    - recommend_tea() [Worker class]\n
-    - giveOrder() [Waiter class]\n
+**Katherine Argente:**
+- recommend_tea() [Worker class]
+- giveOrder() [Waiter class]
