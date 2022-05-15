@@ -302,7 +302,7 @@ class Worker:
         """Worker will recommend a random tea available at the TeaHouse.
          
         Args:
-            teaHouse(TeaHouse): the teaHouse that the worker works in.
+            teaH(TeaHouse): the teaHouse that the worker works in.
          
         Return:
             tea_rec(string): A tea recommendation
@@ -317,9 +317,9 @@ class Worker:
         tea_reco = teaH.tea[rand_tea]
         
         if tea_reco.add_in == "Nothing":
-            f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
+            return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
         else:
-            f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea that has {tea_reco.add_in}"    
+            return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea that has {tea_reco.add_in}"    
         
     
             
