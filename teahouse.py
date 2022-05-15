@@ -1,5 +1,5 @@
 from ipaddress import summarize_address_range
-from random import choice
+from random import choice, random
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -298,7 +298,7 @@ class Worker:
         Worker.name = name
         Worker.tea = tea
     
-    def recommend_tea(self, teaHouse):
+    def recommend_tea(self, teaH):
         """Worker will recommend a random tea available at the TeaHouse.
          
         Args:
@@ -307,10 +307,20 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
-        #need to make random tea
-        tea_reco = teaHouse.tea[0]
-        f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} that has {tea_reco.add_in}"
-    
+        teas_set_size = len(teaH)-1
+        
+        
+        #pick a random number that is between 0 and the TeaHouse teas set size
+        rand_tea = random.random() % teas_set_size
+        
+        #random tea at the teaHouse
+        tea_reco = teaH.tea[rand_tea]
+        
+        if tea_reco.add_in == "Nothing":
+            f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
+        else:
+            f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea that has {tea_reco.add_in}"    
+        
     
             
     
