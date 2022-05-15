@@ -192,7 +192,17 @@ class Customer:
     
     def run(self, teahouse):
         while True:
-            break
+            print(f'''Hello, {self.name}. What would you like to do?\n
+                  0 : Add Order 
+                  1 : Make Payment
+                  2 : Exit''')
+            choice = input('> ')
+            if choice == '0':
+                self.addOrder(self, input("What's your order?\n>"), input("Who's taking your order?\n>"))
+            elif choice == '1':
+                self.pay_order(input("Who's taking your payment?\n>"))
+            elif choice == '2':
+                break
 
 class Tea:
     """A Tea object.
@@ -301,10 +311,7 @@ class Worker:
         tea_reco = teaHouse.tea[0]
         f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} that has {tea_reco.add_in}"
     
-    def run(self, teahouse):
-        while True:
-            print(f'Hello, {self.name}. What would you like to do?')
-            break
+    
             
     
 class Cashier(Worker):
@@ -350,6 +357,20 @@ class Cashier(Worker):
     
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
+    
+    def run(self, teahouse):
+        while True:
+            print(f'''Hello, {self.name}. What would you like to do?\n
+                  0 : Take payment 
+                  1 : Check Data
+                  2 : Exit''')
+            choice = input('> ')
+            if choice == '0':
+                pass #self.receive_payment(c1.name)
+            elif choice == '1':
+                teahouse.plot_data()
+            elif choice == '2':
+                break
 
 class Waiter(Worker):
     """A Worker object.(There are two types of workers.)
@@ -399,10 +420,25 @@ class Waiter(Worker):
         
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
+    
+    def run(self, teahouse):
+        while True:
+            print(f'''Hello, {self.name}. What would you like to do?\n
+                  0 : Take order 
+                  1 : Check Data
+                  2 : Exit''')
+            choice = input('> ')
+            if choice == '0':
+                pass #self.takeOrder('Jasmine Tea')
+            elif choice == '1':
+                teahouse.plot_data()
+            elif choice == '2':
+                break
 
 
 def main():
     th = TeaHouse('Jasmine Dragon')
+    c1 = Customer('Jon', 10.25)
     state = input('Are you a worker, or a customer?\n> ')
     if state.lower() == 'worker':
         user = Worker(input('Welcome back! Please enter your name:\n> '))
