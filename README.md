@@ -12,3 +12,10 @@ INST326 Final Project
         - sorting_customers() [Teahouse class] (custom list sorting with a key)
         - receive_payment() [Cashier class]
 
+## Files
+
+## Running the program
+
+## Output
+
+
