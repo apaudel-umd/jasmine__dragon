@@ -30,14 +30,6 @@ class TeaHouse:
         self.teas = []
         self.workers = []
         self.order_history = pd.read_csv('order_history.csv', sep=',', encoding='utf-8')
-        state = input('Are you a worker, or a customer?\n> ')
-        if state.lower() == 'worker':
-            user = Worker(input('Welcome back! Please enter your name:\n> '))
-        elif state.lower() == 'customer':
-            user = Customer(input(f'Welcome to the {name}! Please enter your name:\n> '), 10.00)
-            print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
-        else:
-            raise ValueError('Please pick one of the two options!')
     
     
     def add_teas(self, tea):
@@ -103,7 +95,7 @@ class TeaHouse:
         """
         return self.workers.append(worker)
     
-    def plot_data(self, column):
+    def plot_data(self):
         ''' Uses pandas and seaborn to plot the data from order_history. 
         
         Args:
@@ -115,21 +107,24 @@ class TeaHouse:
         Raises:
             ValueError: the options should be one of the 4 columns listed  
         '''
+        choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n>')
+        
         a = self.order_history.groupby(['tea_type']).size()
         b = self.order_history.groupby(['tea_temp']).size()
         c = self.order_history.groupby(['tea_size']).size()
         d = self.order_history.groupby(['add_in']).size()
         
-        if column == 'tea_type':
+        
+        if choice == '0' or 'Tea Type':
             sns.barplot(x=a.index, y=a.values)
-        elif column == 'tea_temp':
+        elif choice == '1' or 'Tea Temp':
             sns.barplot(x=b.index, y=b.values)
-        elif column == 'tea_size':
+        elif choice == '2' or 'Tea Size':
             sns.barplot(x=c.index, y=c.values)
-        elif column == 'add_in':
+        elif choice == '3' or 'Add ins':
             sns.barplot(x=d.index, y=d.values)
         else:
-            raise ValueError('Please enter one of these options!\ntea_type\ntea_temp\ntea_size\nadd_in')
+            raise ValueError('Please enter one of the listed options!')
         plt.show()
             
 
@@ -194,6 +189,10 @@ class Customer:
             Changes the money attribute of the customer object.
         """
         pass
+    
+    def run(self, teahouse):
+        while True:
+            break
 
 class Tea:
     """A Tea object.
@@ -302,6 +301,12 @@ class Worker:
         tea_reco = teaHouse.tea[0]
         f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} that has {tea_reco.add_in}"
     
+    def run(self, teahouse):
+        while True:
+            print(f'Hello, {self.name}. What would you like to do?')
+            break
+            
+    
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
 
@@ -397,8 +402,17 @@ class Waiter(Worker):
 
 
 def main():
-    th = TeaHouse('Jasmine_Dragon')
-    th.plot_data(input('What data would you like to see?\n>'))
+    th = TeaHouse('Jasmine Dragon')
+    state = input('Are you a worker, or a customer?\n> ')
+    if state.lower() == 'worker':
+        user = Worker(input('Welcome back! Please enter your name:\n> '))
+        user.run(th)
+    elif state.lower() == 'customer':
+        user = Customer(input(f'Welcome to the {th.name}! Please enter your name:\n> '), 10.00)
+        print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
+        user.run(th)
+    else:
+        raise ValueError('Please pick one of the two options!')
     
     
     
