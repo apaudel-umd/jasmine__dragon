@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 SIZE_PRICE = [2.50, 4.00, 5.50]
-TEA_TYPE = ['black', 'green', 'oolong', 'jamine', 'peach', 'tarro']
+TEA_TYPE = ['black', 'green', 'oolong', 'jasmine', 'peach', 'taro']
 ADD_INS = ['honey', 'sweetner', 'boba']
 
 class TeaHouse:
