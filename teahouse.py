@@ -1,5 +1,4 @@
-from ipaddress import summarize_address_range
-from random import choice, random
+from random import choice
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
