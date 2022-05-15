@@ -397,7 +397,7 @@ class Waiter(Worker):
         Waiter.name = name
 
     def giveOrder(customer):
-        """ Take the order of a customer.
+        """ Gives the orders a customer has requested.
         Args:
             customer(Customer): customer object.
             
