@@ -1,11 +1,10 @@
-from ipaddress import summarize_address_range
-from random import choice, random
+from random import choice
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
 SIZE_PRICE = [2.50, 4.00, 5.50]
-TEA_TYPE = ['black', 'green', 'oolong', 'jamine', 'peach', 'tarro']
+TEA_TYPE = ['black', 'green', 'oolong', 'jasmine', 'peach', 'taro']
 ADD_INS = ['honey', 'sweetner', 'boba']
 
 class TeaHouse:
@@ -307,14 +306,10 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
-        teas_set_size = len(teaH)-1
-        
-        
-        #pick a random number that is between 0 and the TeaHouse teas set size
-        rand_tea = random.random() % teas_set_size
+
         
         #random tea at the teaHouse
-        tea_reco = teaH.tea[rand_tea]
+        tea_reco =   choice(teaH)
         
         if tea_reco.add_in == "Nothing":
             return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
