@@ -413,20 +413,22 @@ class Waiter(Worker):
         #clear the order set after completing order
         customer.order = customer.order - customer.received
     
-    def takeOrder(self, order):
+    def takeOrder(self, customer):
         """Checks if a customer has enough money for their order then takes order of a customer if possible.
         
         Args:
-            order(string): order of a customer.
+            customer(Customer object): Customer object
             
         Returns: 
             The order has been taken or state that the customer does not have 
             sufficient amount of money for their order.
         """
         total = 0
-        for x in order:
+        for x in customer.order:
             total = total + x.price
-        return True if Customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
+        if customer.money >= total:
+            self.giveOrder(customer)
+        return True if customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
