@@ -1,7 +1,12 @@
 from ipaddress import summarize_address_range
-from random import choice
+from random import choice, random
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
 
-SIZES_PRICE = [("small", 2.50), ("medium", 4.00),("large", 5.50)]
+SIZE_PRICE = [2.50, 4.00, 5.50]
+TEA_TYPE = ['black', 'green', 'oolong', 'jamine', 'peach', 'tarro']
+ADD_INS = ['honey', 'sweetner', 'boba']
 
 class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
@@ -17,10 +22,14 @@ class TeaHouse:
         
         Args:
             name(string): Name of the teaHouse
+            
+        Raises:
+            ValueError: The choice should be between customer and worker.
         """ 
         self.customers = []
         self.teas = []
         self.workers = []
+        self.order_history = pd.read_csv('order_history.csv', sep=',', encoding='utf-8')
     
     
     def add_teas(self, tea):
@@ -42,14 +51,12 @@ class TeaHouse:
 
         Args:
             customer(Customer): new customer to add to the list of customers
-            
-        Returns:
-            The updated list of customers.
         
         Side effects:
             Updating the customers attribute of TeaHouse.
         """
-        return self.customers.append(customer)
+        self.customers.append(customer)
+        self.order_history + customer.order + customer.received
     
     def sorting_customers(self, key):
         """Sort the list of customers by the key provided.
@@ -87,6 +94,39 @@ class TeaHouse:
             Updating the workers attribute of TeaHouse.
         """
         return self.workers.append(worker)
+    
+    def plot_data(self):
+        ''' Uses pandas and seaborn to plot the data from order_history. 
+        
+        Args:
+            column (string): the name of the column to plot
+        
+        Side effects:
+            Plots the graph in a new window.
+        
+        Raises:
+            ValueError: the options should be one of the 4 columns listed  
+        '''
+        choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n>')
+        
+        a = self.order_history.groupby(['tea_type']).size()
+        b = self.order_history.groupby(['tea_temp']).size()
+        c = self.order_history.groupby(['tea_size']).size()
+        d = self.order_history.groupby(['add_in']).size()
+        
+        
+        if choice == '0' or 'Tea Type':
+            sns.barplot(x=a.index, y=a.values)
+        elif choice == '1' or 'Tea Temp':
+            sns.barplot(x=b.index, y=b.values)
+        elif choice == '2' or 'Tea Size':
+            sns.barplot(x=c.index, y=c.values)
+        elif choice == '3' or 'Add ins':
+            sns.barplot(x=d.index, y=d.values)
+        else:
+            raise ValueError('Please enter one of the listed options!')
+        plt.show()
+            
 
 class Customer:
     """A customer object.
@@ -138,21 +178,6 @@ class Customer:
         if waiter.takeOrder(order) is True:
             self.orders.add(order)
     
-    def orderReceived(self, received):
-        """Waiter has given a customer object their order.
-        
-        Args: 
-            received(tea): their order that the waiter will give to them after receiving their order
-        """
-        pass
-    
-    def remaining_order(self):
-        """Compare the order set and received set to see how much of their order a customer still needs to receive.
-        
-        Return:
-            Set of the tea that the customer has ordered but hasn't received yet.
-        """
-        return self.order - self.received
     
     def pay_order(self, worker): #ashley
         """Asks a worker for the bill and pays the amount (according to the received set).
@@ -164,6 +189,20 @@ class Customer:
             Changes the money attribute of the customer object.
         """
         pass
+    
+    def run(self, teahouse):
+        while True:
+            print(f'''Hello, {self.name}. What would you like to do?\n
+                  0 : Add Order 
+                  1 : Make Payment
+                  2 : Exit''')
+            choice = input('> ')
+            if choice == '0':
+                self.addOrder(self, input("What's your order?\n>"), input("Who's taking your order?\n>"))
+            elif choice == '1':
+                self.pay_order(input("Who's taking your payment?\n>"))
+            elif choice == '2':
+                break
 
 class Tea:
     """A Tea object.
@@ -173,6 +212,7 @@ class Tea:
             price(float): The prices of the tea, which is determined by the size of tea.
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
+            price(float): The price of the tea based on its size.
     """
     def __init__(self, type, temp = "hot", size = "medium", add_in = "Nothing"):
         """Initialize a Tea object. 
@@ -184,10 +224,18 @@ class Tea:
             add_in(string): default value is None, options are: boba, sugar, honey, and sweetner
             
         """
+        a,b,c = SIZE_PRICE
+        if size == "small":
+            self.price = a
+        elif size == "medium":
+            self.price = b
+        else:
+            self.price = c
         self.type = type
         self.temp = temp
         self.size = size 
         self.add_in = add_in
+        
         
     def updateTea(self, newType = "", newTemp = None, newSize = None, newAdd_in = ""):
         """Change one or many attributes of the tea object.
@@ -207,11 +255,19 @@ class Tea:
             self.temp = newTemp
         elif(newSize != None):   
             self.size = newSize
+            #need to also update price attribute if size of tea changed
+            a,b,c = SIZE_PRICE
+            if newSize == "small":
+                self.price = a
+            elif newSize == "medium":
+                self.price = b
+            else:
+                self.price = c
         elif(newAdd_in != None):     
             self.add_in = newAdd_in
             
-        def combine(self, combineType = "", combineAdd_in = ""): #unable to combine temp and size, max combine 2
-            pass
+    def combine(self, combineType = "", combineAdd_in = ""): #unable to combine temp and size, max combine 2
+        pass
                 
             
     def __str__(self):
@@ -239,19 +295,34 @@ class Worker:
             name(string): name of the worker
             tea (Tea): Worker's favorite tea. Defaults to none.  
         """
-        Worker.name = name
-        Worker.tea = tea
+        self.name = name
+        self.tea = tea
     
-    def recommend_tea(self, teaHouse):
+    def recommend_tea(self, teaH):
         """Worker will recommend a random tea available at the TeaHouse.
          
         Args:
-            teaHouse(TeaHouse): the teaHouse that the worker works in.
+            teaH(TeaHouse): the teaHouse that the worker works in.
          
         Return:
             tea_rec(string): A tea recommendation
         """
-        pass
+        teas_set_size = len(teaH)-1
+        
+        
+        #pick a random number that is between 0 and the TeaHouse teas set size
+        rand_tea = random.random() % teas_set_size
+        
+        #random tea at the teaHouse
+        tea_reco = teaH.tea[rand_tea]
+        
+        if tea_reco.add_in == "Nothing":
+            return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
+        else:
+            return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea that has {tea_reco.add_in}"    
+        
+    
+            
     
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
@@ -265,10 +336,11 @@ class Cashier(Worker):
         Args:
             name(string): name of the worker   
         """
-        Cashier.name = name
+        self.name = name
+        
          
-    def receive_payment(self, customer): #nikhita
-        """Will take payment from a customer and return the any remaining money to the customer.
+    def receive_payment(self, customer): 
+        """Will take payment from a customer and return any remaining money to the customer.
         
         Args:
             customer(Customer): customer that wishes to pay their bill
@@ -276,10 +348,39 @@ class Cashier(Worker):
         Return:
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
         """
-        pass
+        has_paid = ""
+        for i in customer.orders:
+            if i == "small":
+                customer.money -= SIZE_PRICE[0]
+            elif i == "medium":
+                customer.money -= SIZE_PRICE[1]
+            elif i == "large":
+                customer.money -= SIZE_PRICE[2]
+        if customer.money < 0:
+            has_paid = "The bill was not paid"
+        elif customer.money == 0:
+            has_paid = "The bill was paid. The customer has no money left"
+        else:
+            has_paid = "The bill was paid. The customer has money left"
+            
+        return has_paid
     
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
+    
+    def run(self, teahouse):
+        while True:
+            print(f'''Hello, {self.name}. What would you like to do?\n
+                  0 : Take payment 
+                  1 : Check Data
+                  2 : Exit''')
+            choice = input('> ')
+            if choice == '0':
+                pass #self.receive_payment(c1.name)
+            elif choice == '1':
+                teahouse.plot_data()
+            elif choice == '2':
+                break
 
 class Waiter(Worker):
     """A Worker object.(There are two types of workers.)
@@ -295,24 +396,73 @@ class Waiter(Worker):
         """
         Waiter.name = name
 
+    def giveOrder(customer):
+        """ Gives the orders a customer has requested.
+        Args:
+            customer(Customer): customer object.
+            
+        Side effect:
+            Changes the order and received attributes of the customer object.
+        
+        """
+        #goes through the set of teas that the customer has ordered and 
+        #gives the customer their orders(move their set of teas to the received set)
+        for t in customer.order:
+            customer.received.add(t)
+        
+        #clear the order set after completing order
+        customer.order = customer.order - customer.received
     
-    def takeOrder(self, order):
+    def takeOrder(self, customer):
         """Checks if a customer has enough money for their order then takes order of a customer if possible.
         
         Args:
-            order(string): order of a customer.
+            customer(Customer object): Customer object
             
         Returns: 
             The order has been taken or state that the customer does not have 
             sufficient amount of money for their order.
         """
         total = 0
-        for x in order:
+        for x in customer.order:
             total = total + x.price
-        return True if Customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
+        if customer.money >= total:
+            self.giveOrder(customer)
+        return True if customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
+    
+    def run(self, teahouse):
+        while True:
+            print(f'''Hello, {self.name}. What would you like to do?\n
+                  0 : Take order 
+                  1 : Check Data
+                  2 : Exit''')
+            choice = input('> ')
+            if choice == '0':
+                pass #self.takeOrder('Jasmine Tea')
+            elif choice == '1':
+                teahouse.plot_data()
+            elif choice == '2':
+                break
 
+
+def main():
+    th = TeaHouse('Jasmine Dragon')
+    c1 = Customer('Jon', 10.25)
+    state = input('Are you a worker, or a customer?\n> ')
+    if state.lower() == 'worker':
+        user = Worker(input('Welcome back! Please enter your name:\n> '))
+        user.run(th)
+    elif state.lower() == 'customer':
+        user = Customer(input(f'Welcome to the {th.name}! Please enter your name:\n> '), 10.00)
+        print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
+        user.run(th)
+    else:
+        raise ValueError('Please pick one of the two options!')
+    
+    
+    
 if __name__ == "__main__":
-    teahouse = TeaHouse('Jasmine_Dragon')
+    main()
