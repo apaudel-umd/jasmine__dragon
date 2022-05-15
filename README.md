@@ -13,6 +13,7 @@ INST326 Final Project
 **Katherine Argente:**
 - recommend_tea() [Worker class]
 - giveOrder() [Waiter class]
+
 **Nikhita Tripuramallu:**
 - Customer __init__() method
 - takeOrder() [Waiter class] (conditional expressions)
