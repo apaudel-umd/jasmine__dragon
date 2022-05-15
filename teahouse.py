@@ -265,7 +265,9 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
-        pass
+        #need to make random tea
+        tea_reco = teaHouse.tea[0]
+        f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} that has {tea_reco.add_in}"
     
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
