@@ -8,10 +8,20 @@ INST326 Final Project
 - testing_teahouse.ipynb
 
 ## Running the program
-
+You can run the program with <`python` or `python3`> `teahouse.py`. 
+Upon starting the program, you can choose to be a `waiter`, `cashier`, or a `customer`.
+A waiter can take/deliver orders and check order history.
+A cashier can handle payments and check order history.
+A customer can order tea and make payments.
 
 ## Output
+When choosing to check data, you will see seaborn bar graphs as output in a new window. You can check graphs for:
+- Tea Types
+- Tea Temp
+- Tea Size
+- Add ins
 
+All of the data will be output as bar graphs.
 
 ## Attribution:
 **Katherine Argente:**
