@@ -164,17 +164,7 @@ class Customer:
             string of formal representation of the Customer object
         """
         print(f'Customer({self.name!r}, {self.money!r})')
-    
-    def addOrder(self, order, waiter):
-        """Add a order to a customer object if customer has enough money.
         
-        Args:
-            order(tea): order of customer
-            waiter (waiter): the worker taking your order
-        """
-        if waiter.takeOrder(order) is True:
-            self.orders.add(order)
-    
     
     def pay_order(self, worker): #ashley
         """Asks a worker for the bill and pays the amount (according to the received set).
@@ -195,7 +185,7 @@ class Customer:
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                self.addOrder(self, input("What's your order?\n>"), input("Who's taking your order?\n>"))
+                self.giveOrder(self, input("What's your order?\n>"), input("Who's taking your order?\n>"))
             elif choice == '1':
                 self.pay_order(input("Who's taking your payment?\n>"))
             elif choice == '2':
@@ -385,15 +375,19 @@ class Waiter(Worker):
         """
         Waiter.name = name
 
-    def giveOrder(customer):
+    def giveOrder(self, order, customer):
         """ Gives the orders a customer has requested.
         Args:
+            order(tea): order of customer
             customer(Customer): customer object.
             
         Side effect:
             Changes the order and received attributes of the customer object.
         
         """
+        if self.takeOrder(customer.orders) is True:
+            customer.orders.add(order)
+            
         #goes through the set of teas that the customer has ordered and 
         #gives the customer their orders(move their set of teas to the received set)
         for t in customer.order:
