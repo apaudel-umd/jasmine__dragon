@@ -217,7 +217,8 @@ class Customer:
             elif choice == '2':
                 break
             else:
-                raise ValueError("Please provide a valid input!")
+                print("Please provide a valid input!")
+                continue
 
 class Tea:
     """A Tea object.
