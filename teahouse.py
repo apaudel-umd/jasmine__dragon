@@ -190,7 +190,12 @@ class Customer:
              
                 #if user is a customer: need to make some default worker objects
                 #perhaps better to make these worker objects in the main method with the default teaHouse object
-                waiter1 = Waiter(input("Who's taking your order?\n>"))
+                
+                for w in teahouse.workers:
+                    if w is Waiter:
+                        waiter1 = w
+                    else:
+                        waiter1 = Waiter(input("Who's taking your order?\n>"))
                 
                 counter = 0
                 tea_types_available = ""
