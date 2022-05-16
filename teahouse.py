@@ -25,6 +25,7 @@ class TeaHouse:
         Raises:
             ValueError: The choice should be between customer and worker.
         """ 
+        self.name = name
         self.customers = []
         self.teas = []
         self.workers = []
