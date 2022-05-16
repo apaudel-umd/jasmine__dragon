@@ -216,6 +216,8 @@ class Customer:
                 self.pay_order(input("Who's taking your payment?\n>"))
             elif choice == '2':
                 break
+            else:
+                raise ValueError("Please provide a valid input!")
 
 class Tea:
     """A Tea object.
