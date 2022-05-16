@@ -196,8 +196,8 @@ class Customer:
                 for t in TEA_TYPE:
                     tea_types_available += t 
                     counter+=1
-                    if counter != len(TEA_TYPE)-1: 
-                        tea_types_available += " ,"
+                    if counter != len(TEA_TYPE): 
+                        tea_types_available += ", "
                 
                 tea_type = input("For your order, what type of tea do you prefer? We have: \n" + tea_types_available + "\n")
                 
