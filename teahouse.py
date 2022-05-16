@@ -527,19 +527,24 @@ def main():
     th.add_workers(w1)
     th.add_workers(w2)
     
-    state = input('Are you a waiter, cashier, or a customer?\n> ')
-    if state.lower() == 'waiter':
-        user = Waiter(input('Welcome back! Please enter your name:\n> '))
-        user.run(th)
-    elif state.lower() == 'cashier':
-        user = Cashier(input('Welcome back! Please enter your name:\n> '))
-        user.run(th)
-    elif state.lower() == 'customer':
-        user = Customer(input(f'Welcome to the {th.name}! Please enter your name:\n> '), 10.00)
-        print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
-        user.run(th)
-    else:
-        raise ValueError('Please pick one of the three options!')
+    while True:
+        state = input('Are you a waiter, cashier, or a customer?\n> ')
+        if state.lower() == 'waiter':
+            user = Waiter(input('Welcome back! Please enter your name:\n> '))
+            user.run(th)
+            break
+        elif state.lower() == 'cashier':
+            user = Cashier(input('Welcome back! Please enter your name:\n> '))
+            user.run(th)
+            break
+        elif state.lower() == 'customer':
+            user = Customer(input(f'Welcome to the {th.name}! Please enter your name:\n> '), 10.00)
+            print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
+            user.run(th)
+            break
+        else:
+            print('Please pick one of the three options!')
+            continue
     
     
     
