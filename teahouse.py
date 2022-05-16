@@ -106,27 +106,28 @@ class TeaHouse:
         Raises:
             ValueError: the options should be one of the 4 columns listed  
         '''
-        choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n>')
-        
+           
         a = self.order_history.groupby(['tea_type']).size()
         b = self.order_history.groupby(['tea_temp']).size()
         c = self.order_history.groupby(['tea_size']).size()
         d = self.order_history.groupby(['add_in']).size()
         
-        
-        if choice == '0' or 'Tea Type':
-            sns.barplot(x=a.index, y=a.values)
-        elif choice == '1' or 'Tea Temp':
-            sns.barplot(x=b.index, y=b.values)
-        elif choice == '2' or 'Tea Size':
-            sns.barplot(x=c.index, y=c.values)
-        elif choice == '3' or 'Add ins':
-            sns.barplot(x=d.index, y=d.values)
-        else:
-            raise ValueError('Please enter one of the listed options!')
-        plt.show()
+        while True:
+            choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n4 : Exit\n>')
+            if choice == '0' or 'Tea Type':
+                sns.barplot(x=a.index, y=a.values)
+            elif choice == '1' or 'Tea Temp':
+                sns.barplot(x=b.index, y=b.values)
+            elif choice == '2' or 'Tea Size':
+                sns.barplot(x=c.index, y=c.values)
+            elif choice == '3' or 'Add ins':
+                sns.barplot(x=d.index, y=d.values)
+            elif choice == '4' or 'Exit':
+                break
+            else:
+                raise ValueError('Please enter one of the listed options!')
+            plt.show()
             
-
 class Customer:
     """A customer object.
     
@@ -280,7 +281,6 @@ class Tea:
             """
             print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} add_in: {self.add_in!r}')
                  
-
 class Worker:
     """A Worker object.(There are two types of workers: Cashiers and Waiters.)
 
@@ -315,10 +315,7 @@ class Worker:
             return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
         else:
             return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea that has {tea_reco.add_in}"    
-        
-    
-            
-    
+                   
 class Cashier(Worker):
     """A Worker object.(There are two types of workers.)
 
@@ -445,9 +442,16 @@ class Waiter(Worker):
 
 def main():
     th = TeaHouse('Jasmine Dragon')
-    c1 = Customer('Jon', 10.25)
-    state = input('Are you a worker, or a customer?\n> ')
-    if state.lower() == 'worker':
+    t1 = Tea(TEA_TYPE[0], 'hot', ADD_INS[0])
+    t2 = Tea(TEA_TYPE[2], 'cold', ADD_INS[2])
+    c1 = Customer('Rand', 10.25)
+    w1 = Cashier('Perrin', t1)
+    w2 = Waiter('Mat', t2)
+    state = input('Are you a waiter, cashier, or a customer?\n> ')
+    if state.lower() == 'waiter':
+        user = Waiter(input('Welcome back! Please enter your name:\n> '))
+        user.run(th)
+    elif state.lower() == 'cashier':
         user = Cashier(input('Welcome back! Please enter your name:\n> '))
         user.run(th)
     elif state.lower() == 'customer':
@@ -455,7 +459,7 @@ def main():
         print(f'Hi {user.name}, you have ${user.money} to spend. Enjoy!')
         user.run(th)
     else:
-        raise ValueError('Please pick one of the two options!')
+        raise ValueError('Please pick one of the three options!')
     
     
     
