@@ -191,9 +191,13 @@ class Customer:
                 #perhaps better to make these worker objects in the main method with the default teaHouse object
                 waiter1 = Waiter(input("Who's taking your order?\n>"))
                 
+                counter = 0
                 tea_types_available = ""
                 for t in TEA_TYPE:
-                    tea_types_available += t + " "
+                    tea_types_available += t 
+                    counter+=1
+                    if counter != len(TEA_TYPE)-1: 
+                        tea_types_available += " ,"
                 
                 tea_type = input("For your order, what type of tea do you prefer? We have: \n" + tea_types_available + "\n")
                 
