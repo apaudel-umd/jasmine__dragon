@@ -357,7 +357,7 @@ class Worker:
             tea_rec(string): A tea recommendation
         """
         #random tea at the teaHouse
-        tea_reco =   choice(teaH)
+        tea_reco =   choice(teaH.teas)
         
         if tea_reco.add_in == "Nothing":
             return f"A tea I would recommend is a {tea_reco.temp} {tea_reco.type} tea."
