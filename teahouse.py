@@ -244,8 +244,8 @@ class Customer:
                 self.pay_order(input("Who's taking your payment?\n>"))
             elif choice == '2':
                 #recommendation
-                worker = choice(teahouse.workers())
-                print(worker.recommend_tea(), teahouse)
+                worker = teahouse.workers[0]
+                print(worker.recommend_tea(teahouse))
                 continue
             elif choice == '3':
                 print("Good bye and have a nice day~!")
@@ -510,6 +510,12 @@ def main():
     c1 = Customer('Rand', 10.25)
     w1 = Cashier('Perrin')
     w2 = Waiter('Mat')
+    
+    th.add_teas(t1)
+    th.add_teas(t2)
+    th.add_workers(w1)
+    th.add_workers(w2)
+    
     state = input('Are you a waiter, cashier, or a customer?\n> ')
     if state.lower() == 'waiter':
         user = Waiter(input('Welcome back! Please enter your name:\n> '))
