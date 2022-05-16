@@ -319,8 +319,6 @@ class Worker:
         Return:
             tea_rec(string): A tea recommendation
         """
-
-        
         #random tea at the teaHouse
         tea_reco =   choice(teaH)
         
@@ -399,7 +397,7 @@ class Waiter(Worker):
         Args:
             name(string): name of the worker   
         """
-        Waiter.name = name
+        self.name = name
     
     def addOrder(self, order, customer):
         """Add a order to a customer object if customer has enough money.
