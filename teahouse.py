@@ -190,10 +190,20 @@ class Customer:
                 #if user is a customer: need to make some default worker objects
                 #perhaps better to make these worker objects in the main method with the default teaHouse object
                 waiter1 = Waiter(input("Who's taking your order?\n>"))
-                tea_type = input("For your order, what type of tea do you prefer?\n")
+                
+                tea_types_available = ""
+                for t in TEA_TYPE:
+                    tea_types_available += t + " "
+                
+                tea_type = input("For your order, what type of tea do you prefer? We have: \n" + tea_types_available + "\n")
+                
                 tea_temp = input("Is that hot or cold? \n")
-                tea_size = input("Will that size be: small, medium, or large?")
-                tea_add_in = input("Any add ins, if not type 'Nothing'")
+                tea_size = input("Will that size be: small, medium, or large?\n")
+                more_add = input("Any add ins? y for yes, and n for no\n")
+                if more_add == "y":
+                    tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
+                else:
+                    tea_add_in = "Nothing"
                 
                 tea_order = Tea(tea_type, tea_temp, tea_size, tea_add_in)
                 
