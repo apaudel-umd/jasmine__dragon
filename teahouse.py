@@ -216,12 +216,16 @@ class Customer:
                     else:
                         print("Please provide a valid input: 'small', 'medium', or 'large'")
                         continue
-                    
-                more_add = input("Any add ins? y for yes, and n for no\n")
-                if more_add == "y":
-                    tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
-                else:
-                    tea_add_in = "Nothing"
+                while True:    
+                    more_add = input("Any add ins? y for yes, and n for no\n")
+                    if(more_add == 'y') or (more_add == 'n'):
+                        if more_add == "y":
+                            tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
+                        else:
+                            tea_add_in = "Nothing"
+                    else:
+                        print("Please provide a valid input: 'honey', 'sweetner', or 'boba'")
+                        continue
                 
                 tea_order = Tea(tea_type, tea_temp, tea_size, tea_add_in)
                 
