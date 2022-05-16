@@ -218,13 +218,22 @@ class Customer:
                         continue
                 while True:    
                     more_add = input("Any add ins? y for yes, and n for no\n")
-                    if(more_add == 'y') or (more_add == 'n'):
+                    if(more_add == 'y'):
                         if more_add == "y":
-                            tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
-                        else:
-                            tea_add_in = "Nothing"
+                            while True:
+                                tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
+                                if (tea_add_in == "honey") or (tea_add_in == "sweetner") or (tea_add_in == "boba"):
+                                   break 
+                                else:
+                                    print("Please provide a valid input: 'honey', 'sweetner', or 'boba'")
+                                    continue                            
+                            
+                            break    
+                    elif more_add == 'n':
+                        tea_add_in = "Nothing"
+                        break
                     else:
-                        print("Please provide a valid input: 'honey', 'sweetner', or 'boba'")
+                        print("Please provide a valid input: 'y'or 'n'")
                         continue
                 
                 tea_order = Tea(tea_type, tea_temp, tea_size, tea_add_in)
