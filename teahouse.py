@@ -199,7 +199,7 @@ class Customer:
                     if counter != len(TEA_TYPE): 
                         tea_types_available += ", "
                 
-                tea_type = input("For your order, what type of tea do you prefer? \n We have:" + tea_types_available + "\n")
+                tea_type = input("For your order, what type of tea do you prefer? \nWe have: " + tea_types_available + "\n")
                 
                 tea_temp = input("Is that hot or cold? \n")
                 tea_size = input("Will that size be: small, medium, or large?\n")
