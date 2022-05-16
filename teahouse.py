@@ -112,21 +112,18 @@ class TeaHouse:
         c = self.order_history.groupby(['tea_size']).size()
         d = self.order_history.groupby(['add_in']).size()
         
-        while True:
-            choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n4 : Exit\n>')
-            if choice == '0' or 'Tea Type':
-                sns.barplot(x=a.index, y=a.values)
-            elif choice == '1' or 'Tea Temp':
-                sns.barplot(x=b.index, y=b.values)
-            elif choice == '2' or 'Tea Size':
-                sns.barplot(x=c.index, y=c.values)
-            elif choice == '3' or 'Add ins':
-                sns.barplot(x=d.index, y=d.values)
-            elif choice == '4' or 'Exit':
-                break
-            else:
-                raise ValueError('Please enter one of the listed options!')
-            plt.show()
+        choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n4 : Exit\n>')
+        if choice == '0' or 'Tea Type':
+            sns.barplot(x=a.index, y=a.values)
+        elif choice == '1' or 'Tea Temp':
+            sns.barplot(x=b.index, y=b.values)
+        elif choice == '2' or 'Tea Size':
+            sns.barplot(x=c.index, y=c.values)
+        elif choice == '3' or 'Add ins':
+            sns.barplot(x=d.index, y=d.values)
+        else:
+            raise ValueError('Please enter one of the listed options!')
+        plt.show()
             
 class Customer:
     """A customer object.
@@ -445,8 +442,8 @@ def main():
     t1 = Tea(TEA_TYPE[0], 'hot', ADD_INS[0])
     t2 = Tea(TEA_TYPE[2], 'cold', ADD_INS[2])
     c1 = Customer('Rand', 10.25)
-    w1 = Cashier('Perrin', t1)
-    w2 = Waiter('Mat', t2)
+    w1 = Cashier('Perrin')
+    w2 = Waiter('Mat')
     state = input('Are you a waiter, cashier, or a customer?\n> ')
     if state.lower() == 'waiter':
         user = Waiter(input('Welcome back! Please enter your name:\n> '))
