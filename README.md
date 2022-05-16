@@ -25,8 +25,10 @@ All of the data will be output as bar graphs.
 
 ## Attribution:
 **Katherine Argente:**
-- recommend_tea() [Worker class]
-- giveOrder() [Waiter class]
+- Worker(including Cashier and Waiter): __init__() method
+- recommend_tea() [Worker class] (f-strings)
+- giveOrder() [Waiter class] (set operations on sets)
+- updateTea() [Tea class]
 
 **Nikhita Tripuramallu:**
 - Customer __init__() method
