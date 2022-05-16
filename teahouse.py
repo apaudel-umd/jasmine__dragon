@@ -185,7 +185,10 @@ class Customer:
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                self.giveOrder(self, input("What's your order?\n>"), input("Who's taking your order?\n>"))
+                
+                #if user is a customer: need to make some default worker objects
+                waiter1 = Waiter(input("Who's taking your order?\n>"))
+                waiter1.addOrder(input("What's your order?\n>"), self)
             elif choice == '1':
                 self.pay_order(input("Who's taking your payment?\n>"))
             elif choice == '2':
