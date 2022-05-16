@@ -374,8 +374,19 @@ class Waiter(Worker):
             name(string): name of the worker   
         """
         Waiter.name = name
+    
+    def addOrder(self, order, customer):
+        """Add a order to a customer object if customer has enough money.
+        
+        Args:
+            order(tea): order of customer
+            customer (Customer): the customer with the order
+        """
+        if self.takeOrder(order) is True:
+            self.orders.add(order)
+        
 
-    def giveOrder(self, order, customer):
+    def giveOrder(self, customer):
         """ Gives the orders a customer has requested.
         Args:
             order(tea): order of customer
@@ -385,8 +396,8 @@ class Waiter(Worker):
             Changes the order and received attributes of the customer object.
         
         """
-        if self.takeOrder(customer.orders) is True:
-            customer.orders.add(order)
+        #if self.takeOrder(customer.orders) is True:
+        #    customer.orders.add(order)
             
         #goes through the set of teas that the customer has ordered and 
         #gives the customer their orders(move their set of teas to the received set)
