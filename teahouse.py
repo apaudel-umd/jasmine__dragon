@@ -188,8 +188,16 @@ class Customer:
             if choice == '0':
                 
                 #if user is a customer: need to make some default worker objects
+                #perhaps better to make these worker objects in the main method with the default teaHouse object
                 waiter1 = Waiter(input("Who's taking your order?\n>"))
-                waiter1.addOrder(input("What's your order?\n>"), self)
+                tea_type = input("For your order, what type of tea do you prefer?\n")
+                tea_temp = input("Is that hot or cold? \n")
+                tea_size = input("Will that size be: small, medium, or large?")
+                tea_add_in = input("Any add ins, if not type 'Nothing'")
+                
+                tea_order = Tea(tea_type, tea_temp, tea_size, tea_add_in)
+                
+                waiter1.addOrder(tea_order, self)
             elif choice == '1':
                 self.pay_order(input("Who's taking your payment?\n>"))
             elif choice == '2':
