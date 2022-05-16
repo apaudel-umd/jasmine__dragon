@@ -183,10 +183,11 @@ class Customer:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Add Order 
                   1 : Make Payment
-                  2 : Exit''')
+                  2 : Ask for tea recommendation
+                  3 : Exit''')
             choice = input('> ')
             if choice == '0':
-                
+             
                 #if user is a customer: need to make some default worker objects
                 #perhaps better to make these worker objects in the main method with the default teaHouse object
                 waiter1 = Waiter(input("Who's taking your order?\n>"))
@@ -242,6 +243,12 @@ class Customer:
             elif choice == '1':
                 self.pay_order(input("Who's taking your payment?\n>"))
             elif choice == '2':
+                #recommendation
+                worker = choice(teahouse.workers())
+                print(worker.recommend_tea(), teahouse)
+                continue
+            elif choice == '3':
+                print("Good bye and have a nice day~!")
                 break
             else:
                 print("Please provide a valid input!")
