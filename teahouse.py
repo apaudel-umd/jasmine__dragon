@@ -190,12 +190,11 @@ class Customer:
              
                 #if user is a customer: need to make some default worker objects
                 #perhaps better to make these worker objects in the main method with the default teaHouse object
+                waiter1 = Waiter("")
                 
                 for w in teahouse.workers:
                     if w is Waiter:
                         waiter1 = w
-                    else:
-                        waiter1 = Waiter(input("Who's taking your order?\n>"))
                 
                 counter = 0
                 tea_types_available = ""
@@ -246,7 +245,14 @@ class Customer:
                 
                 waiter1.addOrder(tea_order, self)
             elif choice == '1':
-                self.pay_order(input("Who's taking your payment?\n>"))
+                cashier1 = Cashier("")
+                
+                for w in teahouse.workers:
+                    if w is Cashier:
+                        cashier1 = w
+                        
+                print(cashier1.receive_payment(self))
+                continue        
             elif choice == '2':
                 #recommendation
                 worker = teahouse.workers[0]
