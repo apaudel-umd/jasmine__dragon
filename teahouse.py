@@ -201,8 +201,22 @@ class Customer:
                 
                 tea_type = input("For your order, what type of tea do you prefer? \nWe have: " + tea_types_available + "\n")
                 
-                tea_temp = input("Is that hot or cold? \n")
-                tea_size = input("Will that size be: small, medium, or large?\n")
+                while True:
+                    tea_temp = input("Is that hot or cold? \n")
+                    if (tea_temp == "hot") or (tea_temp == "cold"):
+                        break
+                    else:
+                        print("Please provide a valid input: 'hot' or 'cold'")
+                        continue
+                
+                while True:    
+                    tea_size = input("Will that size be: small, medium, or large?\n")
+                    if (tea_size == "small") or (tea_size == "medium") or (tea_size == "large"):
+                        break
+                    else:
+                        print("Please provide a valid input: 'small', 'medium', or 'large'")
+                        continue
+                    
                 more_add = input("Any add ins? y for yes, and n for no\n")
                 if more_add == "y":
                     tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
