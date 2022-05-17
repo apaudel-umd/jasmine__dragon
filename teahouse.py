@@ -1,4 +1,4 @@
-from random import choice
+from random import choice,random
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -537,9 +537,9 @@ class Waiter(Worker):
                 random_d = "Hi, I'm Carl and I would like a large cold black tea with boba. I have $7."
                 
                 words = [] 
-                words.add("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
-                words.add("Hi, I'm Alex and I would like a small cold green tea. I have $6.")
-                words.add("Hi, I'm Adam and I would like a medium hot black tea with boba. I have $10.")
+                words.append("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
+                words.append("Hi, I'm Alex and I would like a small cold green tea. I have $6.")
+                words.append("Hi, I'm Adam and I would like a medium hot black tea with boba. I have $10.")
                 
                 #print(random_d)
                 print(choice(words))
