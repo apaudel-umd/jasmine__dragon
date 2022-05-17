@@ -351,7 +351,7 @@ class Tea:
             Return:
                 string of informal representation of the tea object    
             """
-            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} Add_in: {self.Add_in!r} Price: {self.price!r}')
+            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} Add_in: {self.add_in!r} Price: {self.price!r}')
                  
 class Worker:
     """A Worker object.(There are two types of workers: Cashiers and Waiters.)
