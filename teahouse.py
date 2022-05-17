@@ -521,9 +521,9 @@ class Waiter(Worker):
         return super().recommend_tea(teaHouse)
     
     def run(self, teahouse):
-        random_customer_dialogue = ("Hi my name is Holly, I would like a medium cold black tea.",
-                                  "Hello I'm Allen, I would like small cold green tea with boba",
-                                  "Hi I'm Kim, can I get a large cold oolong tea with honey? Thanks")
+        random_customer_dialogue = [("Hi my name is Holly, I would like a medium cold black tea."),
+                                  ("Hello I'm Allen, I would like small cold green tea with boba"),
+                                  ("Hi I'm Kim, can I get a large cold oolong tea with honey? Thanks")]
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take order 
