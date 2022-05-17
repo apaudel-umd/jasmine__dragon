@@ -533,7 +533,6 @@ class Waiter(Worker):
                 print(random_d)
                 customer_name = input("Input name of customer:\n")
                 customer_money = input("Input customer money amount:\n")
-                #create customer object from customer_name variable look at customer class run method for tea and follow that, slightly changing the dialogue
                 c = Customer(customer_name, customer_money)
                 tea_type = input("Please input type of tea: " + "\n")  
                 
