@@ -418,6 +418,8 @@ class Cashier(Worker):
         
         Return:
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
+        Side effects:
+            Changes the customer attribute: money.
         """
         has_paid = ""
         for i in customer.orders:
@@ -432,6 +434,12 @@ class Cashier(Worker):
         elif customer.money == 0:
             has_paid = "The bill was paid. The customer has no money left"
         else:
+            due_amount = 0
+            for m in customer.received:
+                due_amount += m.price
+                
+            customer.money-= due_amount    
+            
             has_paid = f"The bill was paid. The customer has ${customer.money} left" 
         return has_paid
     
@@ -446,6 +454,10 @@ class Cashier(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
+                print(f'{c1.name} wants to make their payment. They ordered{c1.received}')
+                print(f'{c2.name} wants to make their payment. They ordered{c2.received}')
+                
+                
                 pass #self.receive_payment(c1.name)
             elif choice == '1':
                 teahouse.plot_data()
@@ -473,8 +485,12 @@ class Waiter(Worker):
             order(tea): order of customer
             customer (Customer): the customer with the order
         """
-        if self.takeOrder(order) is True:
+        if len(customer.orders) == 0:
             customer.orders.add(order)      
+
+        else:
+            if self.takeOrder(order) is True:
+                customer.orders.add(order)      
 
     def giveOrder(self, customer):
         """ Gives the orders a customer has requested.
@@ -533,7 +549,6 @@ class Waiter(Worker):
                 print(random_d)
                 customer_name = input("Input name of customer:\n")
                 customer_money = input("Input customer money amount:\n")
-                #create customer object from customer_name variable look at customer class run method for tea and follow that, slightly changing the dialogue
                 c = Customer(customer_name, customer_money)
                 tea_type = input("Please input type of tea: " + "\n")  
                 
