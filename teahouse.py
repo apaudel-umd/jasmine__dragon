@@ -239,7 +239,7 @@ class Customer:
                 waiter1.giveOrder(self)
                 print('You have received:')
                 for w in self.received:
-                    print(f'{w.__str__}')
+                    print(f'{w.__str__()}')
                 print(cashier1.receive_payment(self))
                 
                 continue        
