@@ -535,7 +535,14 @@ class Waiter(Worker):
                 #guest1 = choice(random_customer_dialogue)
                 #a = choice(dialogue)
                 random_d = "Hi, I'm Carl and I would like a large cold black tea with boba. I have $7."
-                print(random_d)
+                
+                words = [] 
+                words.add("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
+                words.add("Hi, I'm Alex and I would like a small cold green tea. I have $6.")
+                words.add("Hi, I'm Adam and I would like a medium hot black tea with boba. I have $10.")
+                
+                #print(random_d)
+                print(choice(words))
                 customer_name = input("Input name of customer:\n")
                 customer_money = input("Input customer money amount:\n")
                 c = Customer(customer_name, customer_money)
