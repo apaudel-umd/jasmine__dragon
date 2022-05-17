@@ -32,16 +32,16 @@ All of the data will be output as bar graphs.
 
 ## Attribution:
 **Katherine Argente:**
-- Worker(including Cashier and Waiter): __init__() method
-- Worker:recommend_tea() (f-strings)
+- Worker (including Cashier and Waiter): __init__()
+- Worker: recommend_tea() (f-strings)
 - Waiter: giveOrder() (set operations on sets)
-- Customer: run() method
+- Customer: run() 
 
 **Nikhita Tripuramallu:**
-- Customer __init__() method
-- takeOrder() [Waiter class] (conditional expressions)
-- sorting_customers() [Teahouse class] (custom list sorting with a key)
-- receive_payment() [Cashier class]
+- Customer: __init__() 
+- Waiter: takeOrder() (conditional expressions)
+- TeaHouse: sorting_customers()(custom list sorting with a key)
+- Cashier: receive_payment()
 
 **Adhish Paudel**
 - TeaHouse: __init__ (Uses Pandas to create a data frame)
@@ -51,7 +51,7 @@ All of the data will be output as bar graphs.
 
 **Ashley Trang**
 - Tea: __init__ method (optional parameters/keyword arguments)
-- Tea: magic methods __str__ (fstrings)
+- Tea: __str__() (magic methods other than __init__)
 - Tea: updateprice()
 - Tea: combine()
 - Tea: updateTea()
