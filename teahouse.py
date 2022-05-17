@@ -108,24 +108,26 @@ class TeaHouse:
         Raises:
             ValueError: the options should be one of the 4 columns listed  
         '''
-           
-        a = self.order_history.groupby(['tea_type']).size()
-        b = self.order_history.groupby(['tea_temp']).size()
-        c = self.order_history.groupby(['tea_size']).size()
-        d = self.order_history.groupby(['add_in']).size()
-        
         choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n4 : Exit\n>')
+        
         if choice == '0' or 'Tea Type':
+            a = self.order_history.groupby(['tea_type']).size()
             sns.barplot(x=a.index, y=a.values)
+            plt.show()
         elif choice == '1' or 'Tea Temp':
+            b = self.order_history.groupby(['tea_temp']).size()
             sns.barplot(x=b.index, y=b.values)
+            plt.show()
         elif choice == '2' or 'Tea Size':
+            c = self.order_history.groupby(['tea_size']).size()
             sns.barplot(x=c.index, y=c.values)
+            plt.show()
         elif choice == '3' or 'Add ins':
+            d = self.order_history.groupby(['add_in']).size()
             sns.barplot(x=d.index, y=d.values)
+            plt.show()
         else:
             raise ValueError('Please enter one of the listed options!')
-        plt.show()
             
 class Customer:
     """A customer object.
@@ -476,8 +478,7 @@ class Waiter(Worker):
             customer (Customer): the customer with the order
         """
         if self.takeOrder(order) is True:
-            customer.orders.add(order)
-        
+            customer.orders.add(order)      
 
     def giveOrder(self, customer):
         """ Gives the orders a customer has requested.
