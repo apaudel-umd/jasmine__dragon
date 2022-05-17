@@ -67,7 +67,7 @@ class TeaHouse:
         Returns:
             The sorted list of customers.    
         """
-        sorted(self.customers, key = lambda c : c.name.lower())
+        sorted(self.customers, key = lambda c :c.key_one)
     
     def current_customers(self):
         """Look at the customers attribute and show the names of all the customers at the TeaHouse.
@@ -455,7 +455,7 @@ class Cashier(Worker):
                 sort_c = input("Would you like to sort the customers? yes or no?")
                 if sort_c.lower() == "yes":
                     
-                    teahouse.sorting_customers(customer.name)
+                    teahouse.sorting_customers(name.lower())
                     for c in teahouse.customers:
                         print(c.__str__())
                 else:
