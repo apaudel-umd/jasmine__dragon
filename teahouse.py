@@ -488,7 +488,7 @@ class Waiter(Worker):
             customer.orders.add(order)      
 
         else:
-            if self.takeOrder(order) is True:
+            if self.takeOrder(customer) is True:
                 customer.orders.add(order)      
 
     def giveOrder(self, customer):
