@@ -58,7 +58,7 @@ class TeaHouse:
         self.customers.append(customer)
         #self.order_history + customer.orders + customer.received
     
-    def sorting_customers(self, key_one):
+    def sorting_customers(self):
         """Sort the list of customers by the key provided.
         
         Args:
@@ -67,7 +67,7 @@ class TeaHouse:
         Returns:
             The sorted list of customers.    
         """
-        sorted(self.customers, key = lambda c :c.key_one)
+        self.customers.sort(key = lambda c :c.name.lower())
     
     def current_customers(self):
         """Look at the customers attribute and show the names of all the customers at the TeaHouse.
@@ -455,7 +455,7 @@ class Cashier(Worker):
                 sort_c = input("Would you like to sort the customers? yes or no?")
                 if sort_c.lower() == "yes":
                     
-                    teahouse.sorting_customers(name.lower())
+                    teahouse.sorting_customers()
                     for c in teahouse.customers:
                         print(c.__str__())
                 else:
@@ -604,8 +604,8 @@ def main():
     w1 = Cashier('Perrin')
     w2 = Waiter('Mat')
     
-    th.add_customers(c1)
     th.add_customers(c2)
+    th.add_customers(c1)
     th.add_customers(c3)
     th.add_teas(t1)
     th.add_teas(t2)
