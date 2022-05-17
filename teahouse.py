@@ -195,10 +195,6 @@ class Customer:
                 if w is Waiter:
                     waiter1 = w
             if choice == '0':
-             
-                
-                
-                
                 
                 counter = 0
                 tea_types_available = ""
@@ -255,7 +251,9 @@ class Customer:
                     if w is Cashier:
                         cashier1 = w
                         
+                waiter1.giveOrder(self)        
                 print(cashier1.receive_payment(self))
+                
                 continue        
             elif choice == '2':
                 #recommendation
