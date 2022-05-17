@@ -1,9 +1,4 @@
-<<<<<<< HEAD
 from random import choice,random
-=======
-from random import choice
-from unicodedata import name
->>>>>>> 9f9bf374ea60a3ecc7d05106fbb0885291444cf8
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
