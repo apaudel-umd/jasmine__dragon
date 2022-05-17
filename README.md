@@ -16,6 +16,10 @@ A cashier can handle payments and check order history.
 A customer can order tea and make payments.
 
 ## Output
+**If your are a customer:**
+When choosing the make payment, you will see your full order set that you payed for, print to the terminal
+
+**If your are a Waiter/Cashier:**
 When choosing to check data, you will see seaborn bar graphs as output in a new window. You can check graphs for:
 - Tea Types
 - Tea Temp
