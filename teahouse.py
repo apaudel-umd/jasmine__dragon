@@ -524,7 +524,7 @@ class Waiter(Worker):
         dialogue = []
         with open("dialogue.txt", 'r',  encoding = 'utf-8') as f:
             for l in f:
-                dialogue.append(str(l))
+                dialogue.append(l.strip())
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take order 
@@ -532,10 +532,8 @@ class Waiter(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                #guest1 = choice(random_customer_dialogue)
-                #a = choice(dialogue)
-                random_d = "Hi, I'm Carl and I would like a large cold black tea with boba. I have $7."
-                print(random_d)
+                print("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
+                #print(choice(dialogue))
                 customer_name = input("Input name of customer:\n")
                 customer_money = input("Input customer money amount:\n")
                 c = Customer(customer_name, customer_money)
