@@ -512,8 +512,6 @@ class Waiter(Worker):
         total = 0
         for x in customer.order:
             total = total + x.price
-        if customer.money >= total:
-            self.giveOrder(customer)
         return True if customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
     def recommend_tea(self, teaHouse):
