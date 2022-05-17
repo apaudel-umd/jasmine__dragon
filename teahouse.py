@@ -481,8 +481,12 @@ class Waiter(Worker):
             order(tea): order of customer
             customer (Customer): the customer with the order
         """
-        if self.takeOrder(order) is True:
+        if len(customer.orders) == 0:
             customer.orders.add(order)      
+
+        else:
+            if self.takeOrder(order) is True:
+                customer.orders.add(order)      
 
     def giveOrder(self, customer):
         """ Gives the orders a customer has requested.
