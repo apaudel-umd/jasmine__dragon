@@ -325,10 +325,19 @@ class Tea:
             else:
                 self.price = c
         elif(newAdd_in != None):     
-            self.add_in = newAdd_in
+            self.Add_in = newAdd_in
             
-    def combine(self, combineType = "", combineAdd_in = ""): #unable to combine temp and size, max combine 2
-        pass
+    def combine(self, combineType = "", combineAdd_in = []): #unable to combine temp and size, max combine 2
+        if combineType == self.type:
+            raise ValueError("You are trying to combine the same tea")
+        elif combineType != None:
+            return self.type + combineType
+        if combineAdd_in == self.Add_in:
+            return(f"Extra {self.Add_in}")
+        elif combineAdd_in != None:
+            return self.Add_in + combineAdd_in
+        
+        
                 
             
     def __str__(self):
