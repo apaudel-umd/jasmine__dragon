@@ -500,7 +500,7 @@ class Waiter(Worker):
         customer.order = customer.order - customer.received
     
     def takeOrder(self, customer):
-        """Checks if a customer has enough money for their order then takes order of a customer if possible.
+        """Checks if a customer has enough money for their order
         
         Args:
             customer(Customer object): Customer object
