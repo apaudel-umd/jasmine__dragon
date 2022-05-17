@@ -422,6 +422,8 @@ class Cashier(Worker):
         
         Return:
             has_paid(string): String stating if the bill was paid or not and if the customer has any remaining money.
+        Side effects:
+            Changes the customer attribute: money.
         """
         has_paid = ""
         for i in customer.orders:
@@ -436,6 +438,12 @@ class Cashier(Worker):
         elif customer.money == 0:
             has_paid = "The bill was paid. The customer has no money left"
         else:
+            due_amount = 0
+            for m in customer.received:
+                due_amount += m.price
+                
+            customer.money-= due_amount    
+            
             has_paid = f"The bill was paid. The customer has ${customer.money} left" 
         return has_paid
     
