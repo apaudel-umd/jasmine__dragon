@@ -533,11 +533,12 @@ class Waiter(Worker):
             if choice == '0':
                 #guest1 = choice(random_customer_dialogue)
                 #a = choice(dialogue)
-                random_d = "Hi, I'm Carl and I would like a large cold black tea with boba."
+                random_d = "Hi, I'm Carl and I would like a large cold black tea with boba. I have $7."
                 print(random_d)
                 customer_name = input("Input name of customer:\n")
+                customer_money = input("Input customer money amount:\n")
                 #create customer object from customer_name variable look at customer class run method for tea and follow that, slightly changing the dialogue
-                c = Customer(customer_name)
+                c = Customer(customer_name, customer_money)
                 tea_type = input("For your order, what type of tea do you prefer? \nWe have: " + "\n")  #change
                 
                 while True:
