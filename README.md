@@ -41,3 +41,10 @@ All of the data will be output as bar graphs.
 - Teahouse: plot_data (Uses pandas and groupby method)
 - Teahouse: plot_data (Uses seaborn to plot bar graphs, uses matplotlib to display the graph)
 - Global Variables : Prices (Uses sequence unpacking)
+
+**Ashley Trang**
+- Tea: __init__ method (optional parameters/keyword arguments)
+- Tea: magic methods __str__ (fstrings)
+- Tea: updateprice()
+- Tea: combine()
+- Tea: updateTea()
