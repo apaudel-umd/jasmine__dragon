@@ -1,5 +1,4 @@
-from random import choice
-from unicodedata import name
+from random import choice,random
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -529,10 +528,10 @@ class Waiter(Worker):
         return super().recommend_tea(teaHouse)
     
     def run(self, teahouse):
-        dialogue = []
+        rand_choice = []
         with open("dialogue.txt", 'r',  encoding = 'utf-8') as f:
             for l in f:
-                dialogue.append(l.strip())
+                rand_choice.append(l.strip())
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take order 
@@ -540,9 +539,8 @@ class Waiter(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                
                 print("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
-                #print(choice(dialogue))
+                #print(choice(rand_choice))
                 customer_name = input("Input name of customer:\n")
                 customer_money = input("Input customer money amount:\n")
                 c = Customer(customer_name, customer_money)
