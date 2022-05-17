@@ -226,11 +226,11 @@ class Customer:
                     if(more_add == 'y'):
                         if more_add == "y":
                             while True:
-                                tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba'\n")
-                                if (tea_add_in == "honey") or (tea_add_in == "sweetner") or (tea_add_in == "boba"):
+                                tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba', or 'milk'\n")
+                                if (tea_add_in == "honey") or (tea_add_in == "sweetner") or (tea_add_in == "boba") or (tea_add_in == "milk"):
                                    break 
                                 else:
-                                    print("Please provide a valid input: 'honey', 'sweetner', or 'boba'")
+                                    print("Please provide a valid input: 'honey', 'sweetner','boba', or 'milk'")
                                     continue                            
                             
                             break    
