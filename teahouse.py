@@ -1,5 +1,4 @@
 from random import choice
-from tkinter import Variable
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -187,15 +186,14 @@ class Customer:
                   2 : Ask for tea recommendation
                   3 : Exit''')
             choice = input('> ')
+            
+            waiter1 = Waiter("")
+            
+            #if user is a customer: need to make some default worker objects    
+            for w in teahouse.workers:
+                if w is Waiter:
+                    waiter1 = w
             if choice == '0':
-             
-                #if user is a customer: need to make some default worker objects
-                #perhaps better to make these worker objects in the main method with the default teaHouse object
-                waiter1 = Waiter("")
-                
-                for w in teahouse.workers:
-                    if w is Waiter:
-                        waiter1 = w
                 
                 counter = 0
                 tea_types_available = ""
@@ -252,7 +250,9 @@ class Customer:
                     if w is Cashier:
                         cashier1 = w
                         
+                waiter1.giveOrder(self)        
                 print(cashier1.receive_payment(self))
+                
                 continue        
             elif choice == '2':
                 #recommendation
@@ -475,8 +475,12 @@ class Waiter(Worker):
             order(tea): order of customer
             customer (Customer): the customer with the order
         """
-        if self.takeOrder(order) is True:
-            customer.orders.add(order)
+        if len(customer.orders)== 0:
+            if order.price <= customer.money:
+                customer.orders.add(order)
+        else:
+            if self.takeOrder(order) is True:
+                customer.orders.add(order)
         
 
     def giveOrder(self, customer):
@@ -494,11 +498,11 @@ class Waiter(Worker):
             
         #goes through the set of teas that the customer has ordered and 
         #gives the customer their orders(move their set of teas to the received set)
-        for t in customer.order:
+        for t in customer.orders:
             customer.received.add(t)
         
         #clear the order set after completing order
-        customer.order = customer.order - customer.received
+        customer.orders = customer.orders - customer.received
     
     def takeOrder(self, customer):
         """Checks if a customer has enough money for their order
@@ -511,7 +515,7 @@ class Waiter(Worker):
             sufficient amount of money for their order.
         """
         total = 0
-        for x in customer.order:
+        for x in customer.orders:
             total = total + x.price
         return True if customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
@@ -519,9 +523,10 @@ class Waiter(Worker):
         return super().recommend_tea(teaHouse)
     
     def run(self, teahouse):
-        random_customer_dialogue = ["Hi my name is Holly, I would like a medium cold black tea.",
-                                  "Hello I'm Allen, I would like small cold green tea with boba",
-                                  "Hi I'm Kim, can I get a large cold oolong tea with honey? Thanks"]
+        dialogue = []
+        with open("dialogue.txt", 'r',  encoding = 'utf-8') as f:
+            for l in f:
+                dialogue.append(str(l))
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take order 
@@ -530,11 +535,11 @@ class Waiter(Worker):
             choice = input('> ')
             if choice == '0':
                 #guest1 = choice(random_customer_dialogue)
-                print(random_customer_dialogue[1])
+                print(choice(dialogue))
                 customer_name = input("Input name of customer:\n")
                 #create customer object from customer_name variable look at customer class run method for tea and follow that, slightly changing the dialogue
                 c = Customer(customer_name)
-                tea_type = input("For your order, what type of tea do you prefer? \nWe have: " + tea_types_available + "\n")
+                tea_type = input("For your order, what type of tea do you prefer? \nWe have: " + "\n")
                 
                 while True:
                     tea_temp = input("Is that hot or cold? \n")
@@ -572,7 +577,7 @@ class Waiter(Worker):
                         continue
                 
                 tea_order = Tea(tea_type, tea_temp, tea_size, tea_add_in)
-                teahouse.
+                teahouse.add_teas(tea_order)
                 
                 pass #self.takeOrder('Jasmine Tea')
             elif choice == '1':
