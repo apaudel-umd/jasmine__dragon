@@ -433,8 +433,7 @@ class Cashier(Worker):
         elif customer.money == 0:
             has_paid = "The bill was paid. The customer has no money left"
         else:
-            has_paid = "The bill was paid. The customer has money left"
-            
+            has_paid = f"The bill was paid. The customer has ${customer.money} left" 
         return has_paid
     
     def recommend_tea(self, teaHouse):
