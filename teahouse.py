@@ -108,25 +108,21 @@ class TeaHouse:
             ValueError: the options should be one of the 4 columns listed  
         '''
         choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n4 : Exit\n>')
-        
+        a = self.order_history.groupby(['tea_type']).size()
+        b = self.order_history.groupby(['tea_temp']).size()
+        c = self.order_history.groupby(['tea_size']).size()
+        d = self.order_history.groupby(['add_in']).size()
         if choice == '0' or 'Tea Type':
-            a = self.order_history.groupby(['tea_type']).size()
             sns.barplot(x=a.index, y=a.values)
-            plt.show()
         elif choice == '1' or 'Tea Temp':
-            b = self.order_history.groupby(['tea_temp']).size()
             sns.barplot(x=b.index, y=b.values)
-            plt.show()
         elif choice == '2' or 'Tea Size':
-            c = self.order_history.groupby(['tea_size']).size()
             sns.barplot(x=c.index, y=c.values)
-            plt.show()
         elif choice == '3' or 'Add ins':
-            d = self.order_history.groupby(['add_in']).size()
             sns.barplot(x=d.index, y=d.values)
-            plt.show()
         else:
             raise ValueError('Please enter one of the listed options!')
+        plt.show()
             
 class Customer:
     """A customer object.
