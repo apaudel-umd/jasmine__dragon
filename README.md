@@ -6,6 +6,7 @@ INST326 Final Project
 - order_history.csv
 - teahouse.py
 - testing_teahouse.ipynb
+- dialogue.txt
 
 ## Running the program
 You can run the program with <`python` or `python3`> `teahouse.py`. 
