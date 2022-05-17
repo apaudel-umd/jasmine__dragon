@@ -56,7 +56,7 @@ class TeaHouse:
             Updating the customers attribute of TeaHouse.
         """
         self.customers.append(customer)
-        self.order_history + customer.order + customer.received
+        #self.order_history + customer.orders + customer.received
     
     def sorting_customers(self, key_one):
         """Sort the list of customers by the key provided.
