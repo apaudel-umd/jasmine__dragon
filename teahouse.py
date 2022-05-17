@@ -532,6 +532,7 @@ class Waiter(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
+                
                 print("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
                 #print(choice(dialogue))
                 customer_name = input("Input name of customer:\n")
