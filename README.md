@@ -33,9 +33,9 @@ All of the data will be output as bar graphs.
 ## Attribution:
 **Katherine Argente:**
 - Worker(including Cashier and Waiter): __init__() method
-- recommend_tea() [Worker class] (f-strings)
-- giveOrder() [Waiter class] (set operations on sets)
-- Run method (Customer class)
+- Worker:recommend_tea() (f-strings)
+- Waiter: giveOrder() (set operations on sets)
+- Customer: run() method
 
 **Nikhita Tripuramallu:**
 - Customer __init__() method
