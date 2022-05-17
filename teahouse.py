@@ -1,4 +1,5 @@
 from random import choice
+from tkinter import dialog
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -518,9 +519,10 @@ class Waiter(Worker):
         return super().recommend_tea(teaHouse)
     
     def run(self, teahouse):
-        random_customer_dialogue = ["Hi my name is Holly, I would like a medium cold black tea.",
-                                  "Hello I'm Allen, I would like small cold green tea with boba",
-                                  "Hi I'm Kim, can I get a large cold oolong tea with honey? Thanks"]
+        dialogue = []
+        with open("dialogue.txt", 'r',  encoding = 'utf-8') as f:
+            for l in f:
+                dialogue.append(str(l))
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take order 
@@ -529,7 +531,7 @@ class Waiter(Worker):
             choice = input('> ')
             if choice == '0':
                 #guest1 = choice(random_customer_dialogue)
-                print(random_customer_dialogue[1])
+                print(choice(dialogue))
                 customer_name = input("Input name of customer:\n")
                 
                 pass #self.takeOrder('Jasmine Tea')
