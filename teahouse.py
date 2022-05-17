@@ -186,15 +186,18 @@ class Customer:
                   2 : Ask for tea recommendation
                   3 : Exit''')
             choice = input('> ')
+            
+            waiter1 = Waiter("")
+            
+            #if user is a customer: need to make some default worker objects    
+            for w in teahouse.workers:
+                if w is Waiter:
+                    waiter1 = w
             if choice == '0':
              
-                #if user is a customer: need to make some default worker objects
-                #perhaps better to make these worker objects in the main method with the default teaHouse object
-                waiter1 = Waiter("")
                 
-                for w in teahouse.workers:
-                    if w is Waiter:
-                        waiter1 = w
+                
+                
                 
                 counter = 0
                 tea_types_available = ""
