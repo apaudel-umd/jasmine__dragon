@@ -294,16 +294,16 @@ class Tea:
             self.price = c
         self.type = type
         #type = ["Oolong", "Jasmine Green Tea", "Green Tea", "Black Tea", "Herbal Tea"]
-        for i in TEA_TYPE:
-            if i != type:
-                raise ValueError("We do not have that tea, please choose a different one.")
+        #for i in TEA_TYPE:
+        #    if i != type:
+        #        raise ValueError("We do not have that tea, please choose a different one.")
         self.temp = temp
         self.size = size 
         self.add_in = add_in
         #Add_in = ["Boba", "Sugar", "Honey", "Sweetner", "Milk"]
-        for i2 in ADD_INS:
-            if i2 != add_in:
-                raise ValueError("We do not have that Add_in, please choose a different one.")
+        #for i2 in ADD_INS:
+        #    if i2 != add_in:
+        #        raise ValueError("We do not have that Add_in, please choose a different one.")
         
         
     def updateTea(self, newType = "", newTemp = None, newSize = None, newAdd_in = ""):
