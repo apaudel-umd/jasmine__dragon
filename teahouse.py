@@ -4,8 +4,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 
 SIZE_PRICE = [2.50, 4.00, 5.50]
-TEA_TYPE = ['black', 'green', 'oolong', 'jasmine', 'peach', 'taro']
-ADD_INS = ['honey', 'sweetner', 'boba']
+TEA_TYPE = ['black', 'green', 'oolong', 'jasmine', 'peach', 'taro', 'jasmine green', 'herbal']
+ADD_INS = ['honey', 'sweetner', 'boba', 'milk']
 
 class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
