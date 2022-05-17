@@ -455,7 +455,7 @@ class Cashier(Worker):
             elif choice == '2':
                 sort_c = input("Would you like to sort the customers? Yes or No?")
                 if sort_c == "Yes":
-                    teahouse.sorting_customers(teahouse, teahouse.customers.name)
+                    teahouse.sorting_customers(teahouse, customer.name)
                     for c in teahouse.customers:
                         print(c.__str__())
             elif choice == '3':
