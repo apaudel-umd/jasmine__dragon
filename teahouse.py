@@ -1,4 +1,5 @@
 from random import choice
+from tkinter import Variable
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -531,6 +532,47 @@ class Waiter(Worker):
                 #guest1 = choice(random_customer_dialogue)
                 print(random_customer_dialogue[1])
                 customer_name = input("Input name of customer:\n")
+                #create customer object from customer_name variable look at customer class run method for tea and follow that, slightly changing the dialogue
+                c = Customer(customer_name)
+                tea_type = input("For your order, what type of tea do you prefer? \nWe have: " + tea_types_available + "\n")
+                
+                while True:
+                    tea_temp = input("Is that hot or cold? \n")
+                    if (tea_temp == "hot") or (tea_temp == "cold"):
+                        break
+                    else:
+                        print("Please provide a valid input: 'hot' or 'cold'")
+                        continue
+                
+                while True:    
+                    tea_size = input("Will that size be: small, medium, or large?\n")
+                    if (tea_size == "small") or (tea_size == "medium") or (tea_size == "large"):
+                        break
+                    else:
+                        print("Please provide a valid input: 'small', 'medium', or 'large'")
+                        continue
+                while True:    
+                    more_add = input("Any add ins? y for yes, and n for no\n")
+                    if(more_add == 'y'):
+                        if more_add == "y":
+                            while True:
+                                tea_add_in = input("What add ins would you prefer? We have: 'honey', 'sweetner', 'boba', or 'milk'\n")
+                                if (tea_add_in == "honey") or (tea_add_in == "sweetner") or (tea_add_in == "boba") or (tea_add_in == "milk"):
+                                   break 
+                                else:
+                                    print("Please provide a valid input: 'honey', 'sweetner','boba', or 'milk'")
+                                    continue                            
+                            
+                            break    
+                    elif more_add == 'n':
+                        tea_add_in = "Nothing"
+                        break
+                    else:
+                        print("Please provide a valid input: 'y'or 'n'")
+                        continue
+                
+                tea_order = Tea(tea_type, tea_temp, tea_size, tea_add_in)
+                teahouse.
                 
                 pass #self.takeOrder('Jasmine Tea')
             elif choice == '1':
