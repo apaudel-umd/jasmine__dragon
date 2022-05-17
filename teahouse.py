@@ -67,7 +67,7 @@ class TeaHouse:
         Returns:
             The sorted list of customers.    
         """
-        return sorted(self.customers, key=key_one)
+        self.customers.sort(key=key_one)
     
     def current_customers(self):
         """Look at the customers attribute and show the names of all the customers at the TeaHouse.
