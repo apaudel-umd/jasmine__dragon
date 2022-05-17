@@ -344,18 +344,24 @@ class Tea:
             return(f"Extra {self.Add_in}")
         elif combineAdd_in != None:
             return self.Add_in + combineAdd_in
-                 
+    
+    def updatePrice(self):
+        if Tea.combine(combineType= ""):
+            return self.price + 1.25
+        if Tea.combine(combineAdd_in= ""):
+            return self.price + .75
+                    
             
     def __str__(self):
             """Informal representation of a Tea object.
             
             The format of informal representation will be: 
-                "Tea Order: Type:___" + "Temperature:___ + "Size:___" + "add_in:____ " 
+                "Tea Order: Type:___" + "Temperature:___ + "Size:___" + "Add_in:____" + "Price:___" 
             
             Return:
                 string of informal representation of the tea object    
             """
-            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} add_in: {self.add_in!r}')
+            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} Add_in: {self.Add_in!r} Price: {self.price!r}')
                  
 class Worker:
     """A Worker object.(There are two types of workers: Cashiers and Waiters.)
