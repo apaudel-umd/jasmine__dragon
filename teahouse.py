@@ -1,4 +1,4 @@
-from random import choice
+from random import choice,random
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -442,7 +442,8 @@ class Cashier(Worker):
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take payment 
                   1 : Check Data
-                  2 : Exit''')
+                  2 : Sort customers
+                  3 : Exit''')
             choice = input('> ')
             if choice == '0':
                 print(f'{customer.name} wants to make their payment.')
@@ -451,6 +452,12 @@ class Cashier(Worker):
             elif choice == '1':
                 teahouse.plot_data()
             elif choice == '2':
+                sort_c = input("Would you like to sort the customers? Yes or No?")
+                if sort_c == "Yes":
+                    teahouse.sorting_customers(teahouse, teahouse.customers.name)
+                    for c in teahouse.customers:
+                        print(c.__str__())
+            elif choice == '3':
                 break
 
 class Waiter(Worker):
