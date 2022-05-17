@@ -164,18 +164,6 @@ class Customer:
             string of formal representation of the Customer object
         """
         print(f'Customer({self.name!r}, {self.money!r})')
-        
-    
-    def pay_order(self, worker): #ashley
-        """Asks a worker for the bill and pays the amount (according to the received set).
-        
-        Return:
-            paid(string): states if the bill has been paid or not
-            
-        Side effect:
-            Changes the money attribute of the customer object.
-        """
-        pass
     
     def run(self, teahouse):
         while True:
@@ -249,7 +237,10 @@ class Customer:
                     if w is Cashier:
                         cashier1 = w
                         
-                waiter1.giveOrder(self)        
+                waiter1.giveOrder(self)
+                print('You have received:')
+                for w in self.received:
+                    print(f'{w.__str__()}')
                 print(cashier1.receive_payment(self))
                 
                 continue        
@@ -361,7 +352,7 @@ class Tea:
             Return:
                 string of informal representation of the tea object    
             """
-            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} Add_in: {self.Add_in!r} Price: {self.price!r}')
+            print(f'Tea Order: Type: {self.type!r} Temperature: {self.temp!r} Size:{self.size!r} Add_in: {self.add_in!r} Price: {self.price!r}')
                  
 class Worker:
     """A Worker object.(There are two types of workers: Cashiers and Waiters.)
@@ -457,7 +448,7 @@ class Cashier(Worker):
             choice = input('> ')
             if choice == '0':
                 print(f'{customer.name} wants to make their payment.')
-                self.receive_payment(customer)
+                print(self.receive_payment(customer))
                 print(f''' You have handled {customer.name}'s payment!''')
             elif choice == '1':
                 teahouse.plot_data()
@@ -541,7 +532,7 @@ class Waiter(Worker):
         dialogue = []
         with open("dialogue.txt", 'r',  encoding = 'utf-8') as f:
             for l in f:
-                dialogue.append(str(l))
+                dialogue.append(l.strip())
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take order 
@@ -549,10 +540,9 @@ class Waiter(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                #guest1 = choice(random_customer_dialogue)
-                #a = choice(dialogue)
-                random_d = "Hi, I'm Carl and I would like a large cold black tea with boba. I have $7."
-                print(random_d)
+                
+                print("Hi, I'm Carl and I would like a large cold black tea with boba. I have $7.")
+                #print(choice(dialogue))
                 customer_name = input("Input name of customer:\n")
                 customer_money = input("Input customer money amount:\n")
                 c = Customer(customer_name, customer_money)
