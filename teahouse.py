@@ -163,18 +163,6 @@ class Customer:
             string of formal representation of the Customer object
         """
         print(f'Customer({self.name!r}, {self.money!r})')
-        
-    
-    def pay_order(self, worker): #ashley
-        """Asks a worker for the bill and pays the amount (according to the received set).
-        
-        Return:
-            paid(string): states if the bill has been paid or not
-            
-        Side effect:
-            Changes the money attribute of the customer object.
-        """
-        pass
     
     def run(self, teahouse):
         while True:
