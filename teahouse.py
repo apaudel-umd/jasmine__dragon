@@ -293,9 +293,12 @@ class Tea:
         else:
             self.price = c
         self.type = type
+        type = ["Oolong", "Jasmine Green Tea", "Green Tea", "Black Tea", "Herbal Tea"]
         self.temp = temp
         self.size = size 
-        self.add_in = add_in
+        self.add_in = Add_in
+        Add_in = ["Boba", "Sugar", "Honey", "Sweetner", "Milk"]
+        
         
         
     def updateTea(self, newType = "", newTemp = None, newSize = None, newAdd_in = ""):
@@ -336,9 +339,7 @@ class Tea:
             return(f"Extra {self.Add_in}")
         elif combineAdd_in != None:
             return self.Add_in + combineAdd_in
-        
-        
-                
+                 
             
     def __str__(self):
             """Informal representation of a Tea object.
