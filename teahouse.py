@@ -454,9 +454,9 @@ class Cashier(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                print(f'{customer.name} wants to make their payment. They ordered{customer.received}')
+                print(f'{customer.name} wants to make their payment.')
                 self.receive_payment(customer)
-                print(''' You have handled {customer.name}'s payment!''')
+                print(f''' You have handled {customer.name}'s payment!''')
             elif choice == '1':
                 teahouse.plot_data()
             elif choice == '2':
