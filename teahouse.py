@@ -499,11 +499,11 @@ class Waiter(Worker):
             
         #goes through the set of teas that the customer has ordered and 
         #gives the customer their orders(move their set of teas to the received set)
-        for t in customer.order:
+        for t in customer.orders:
             customer.received.add(t)
         
         #clear the order set after completing order
-        customer.order = customer.order - customer.received
+        customer.orders = customer.orders - customer.received
     
     def takeOrder(self, customer):
         """Checks if a customer has enough money for their order
@@ -516,7 +516,7 @@ class Waiter(Worker):
             sufficient amount of money for their order.
         """
         total = 0
-        for x in customer.order:
+        for x in customer.orders:
             total = total + x.price
         return True if customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
