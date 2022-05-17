@@ -476,8 +476,12 @@ class Waiter(Worker):
             order(tea): order of customer
             customer (Customer): the customer with the order
         """
-        if self.takeOrder(order) is True:
-            customer.orders.add(order)
+        if len(customer.order)== 0:
+            if order.price <= customer.money:
+                customer.orders.add(order)
+        else:
+            if self.takeOrder(order) is True:
+                customer.orders.add(order)
         
 
     def giveOrder(self, customer):
