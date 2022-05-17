@@ -455,7 +455,7 @@ class Cashier(Worker):
                 sort_c = input("Would you like to sort the customers? yes or no?")
                 if sort_c.lower() == "yes":
                     
-                    teahouse.sorting_customers(Customer.name)
+                    teahouse.sorting_customers(customer.name)
                     for c in teahouse.customers:
                         print(c.__str__())
                 else:
