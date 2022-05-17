@@ -446,7 +446,7 @@ class Cashier(Worker):
     def recommend_tea(self, teaHouse):
         return super().recommend_tea(teaHouse)
     
-    def run(self, teahouse):
+    def run(self, teahouse, customer):
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take payment 
@@ -454,11 +454,9 @@ class Cashier(Worker):
                   2 : Exit''')
             choice = input('> ')
             if choice == '0':
-                print(f'{c1.name} wants to make their payment. They ordered{c1.received}')
-                print(f'{c2.name} wants to make their payment. They ordered{c2.received}')
-                
-                
-                pass #self.receive_payment(c1.name)
+                print(f'{customer.name} wants to make their payment. They ordered{customer.received}')
+                self.receive_payment(customer)
+                print(''' You have handled {customer.name}'s payment!''')
             elif choice == '1':
                 teahouse.plot_data()
             elif choice == '2':
@@ -618,7 +616,8 @@ def main():
             break
         elif state.lower() == 'cashier':
             user = Cashier(input('Welcome back! Please enter your name:\n> '))
-            user.run(th)
+            print(f'Customer {c1.name} is waiting for help!')
+            user.run(th, c1)
             break
         elif state.lower() == 'customer':
             user = Customer(input(f'Welcome to the {th.name}! Please enter your name:\n> '), 10.00)
