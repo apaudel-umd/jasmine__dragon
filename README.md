@@ -20,9 +20,18 @@ Please enter the numbers shown to make your selection. From here on out, you can
 
 ## Output
 **If you are a customer:**
-When choosing the make payment, you will see your full order set that you payed for, print to the terminal
+-When choosing the 'Add Order' option, you will see the possible tea selections available at the teahouse: this then goes through the list of Tea attributes to allow a customer to full customize their tea order, prints to the terminal 
+-When choosing the 'Make payment' option, you will see your full order set that you have paid  print to the terminal
+-When you ask for a tea recommendation, you will see a random tea recommendation print to the terminal
 
-**If you are a Waiter/Cashier:**
+**If you are a waiter:**
+-When choosing the 'Take order' option, you will see a random customer dialogue print to the terminal. It is your job to input their name, how much money they have, and tea order into the teahouse system 
+
+**If you are a cashier:**
+-When choosing the 'Take payment', you will see that a customer wants to pay for their order and that you have handed their payment print to the console
+-When choosing the 'Sort customers', you will first see the system ask yes for confirmation then print the list of customers, the amount of money they paid, their order, and if they received their order yet to the console 
+
+**If you are either a Waiter or Cashier:**
 When choosing to check data, you will see seaborn bar graphs as output in a new window. You can check graphs for:
 - Tea Types
 - Tea Temp
