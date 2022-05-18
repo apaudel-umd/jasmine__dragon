@@ -15,6 +15,7 @@ No matter who you choose, you have to first enter your name. This name will be u
 - A waiter can take orders and check order history.
 - A cashier can take payments check order history, and sort the list of customers.
 - A customer can order tea, make a payment, and ask for tea recommendations.
+
 Please enter the numbers shown to make your selection. From here on out, you can enter the numbers to make a choice, and type in the appropriate words when asked any questions. The last option will always be `exit` which you can use to close the program. 
 
 ## Output
