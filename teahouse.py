@@ -11,19 +11,17 @@ class TeaHouse:
     """A TeaHouse object which consists of customer objects, tea objects, and worker objects. (using composition)
       
     Atrributes:
+        name (string): name of the tea house
         customers(list of Customer objects): the customers inside the TeaHouse
         teas(list of Tea objects): teas that are available to order
         workers(list of Worker objects): workers at the TeaHouse
+        order_history (dataframe): list of past orders
     """
     
     def __init__(self, name):
         """Initialize a TeaHouse object.
-        
         Args:
             name(string): Name of the teaHouse
-            
-        Raises:
-            ValueError: The choice should be between customer and worker.
         """ 
         self.name = name
         self.customers = []
@@ -56,16 +54,12 @@ class TeaHouse:
             Updating the customers attribute of TeaHouse.
         """
         self.customers.append(customer)
-        #self.order_history + customer.orders + customer.received
     
     def sorting_customers(self):
-        """Sort the list of customers by the key provided.
-        
-        Args:
-            key_one(string): key function used to sort the list of customers a certain way.
+        """Sort the list of customers by the name of the object.
          
-        Returns:
-            The sorted list of customers.    
+        Side effects:
+            Updates the atribute customers   
         """
         self.customers.sort(key = lambda c :c.name.lower())
     
@@ -73,7 +67,7 @@ class TeaHouse:
         """Look at the customers attribute and show the names of all the customers at the TeaHouse.
         
         Returns:
-            customer_names(string): f-string of all the customers at the TeaHouse.
+            customer_names(list): a list of all the customers at the TeaHouse.
         """
         
         customer_names = []
@@ -105,9 +99,9 @@ class TeaHouse:
             Plots the graph in a new window.
         
         Raises:
-            ValueError: the options should be one of the 4 columns listed  
+            ValueError: the options should be one of the options listed  
         '''
-        choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n4 : Exit\n>')
+        choice = input('What data would you like to see?\n0 : Tea Type\n1 : Tea Temp\n2 : Tea Size\n3 : Add ins\n>')
         a = self.order_history.groupby(['tea_type']).size()
         b = self.order_history.groupby(['tea_temp']).size()
         c = self.order_history.groupby(['tea_size']).size()
@@ -165,6 +159,15 @@ class Customer:
         print(f'Customer({self.name!r}, {self.money!r})')
     
     def run(self, teahouse):
+        """Runs the methods in Customer with user inputs.
+
+        Args:
+            teahouse (TeaHouse): The teahouse that this customer is in. 
+        
+        Side effects:
+            print: prints strings to the console.
+            input: takes in user inputs.
+        """        
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Add Order 
@@ -264,15 +267,16 @@ class Tea:
             temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
             size(string): default value is ""medium, Values can only be: small , medium, or large
             price(float): The price of the tea based on its size.
+            add_in(string): An add on to the tea. 
     """
     def __init__(self, type, temp = "hot", size = "medium", add_in = "Nothing"):
         """Initialize a Tea object. 
         
         Args: 
             type(string): The type of tea
-            temp(string): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
-            size(string): default value is ""medium, Values can only be: small , medium, or large
-            add_in(string): default value is None, options are: boba, sugar, honey, and sweetner
+            temp(string, optional): default value is "hot", Values of temp can only be: ‘hot’ or ‘cold’    
+            size(string, optional): default value is ""medium, Values can only be: small , medium, or large
+            add_in(string, optional): default value is None, options are: boba, sugar, honey, and sweetner
             
         """
         a,b,c = SIZE_PRICE
@@ -300,10 +304,10 @@ class Tea:
         """Change one or many attributes of the tea object.
         
         Args:
-            newType(string): new type of the tea object.
-            newTemp(string): new temperature of the tea object.
-            newSize(string): new size of the tea object.
-            newAdd_in(string): new add_in of the tea object.
+            newType(string, optional): new type of the tea object. Defaults to empty stirng.
+            newTemp(string, optional): new temperature of the tea object. Deafults to None.
+            newSize(string, optional): new size of the tea object. Deafults to None.
+            newAdd_in(string, optional): new add_in of the tea object. Defaults to empty string.
             
         Side effect:
             Changes the desired attribute(s) of the tea object.
@@ -326,6 +330,18 @@ class Tea:
             self.Add_in = newAdd_in
             
     def combine(self, combineType = "", combineAdd_in = []): #unable to combine temp and size, max combine 2
+        """Combine different types of teas or different add ins.
+
+        Args:
+            combineType (str, optional): _description_. Defaults to "".
+            combineAdd_in (list, optional): _description_. Defaults to [].
+
+        Raises:
+            ValueError: Error if the combinations include the same tea.
+
+        Returns:
+            _type_: Returns a new, combined tea.
+        """        
         if combineType == self.type:
             raise ValueError("You are trying to combine the same tea")
         elif combineType != None:
@@ -336,10 +352,15 @@ class Tea:
             return self.Add_in + combineAdd_in
     
     def updatePrice(self):
+        """Updates the price based on the combination.
+        
+            Side effects:
+                Updates the attribute price.
+        """                
         if Tea.combine(combineType= ""):
-            return self.price + 1.25
+            self.price = self.price + 1.25
         if Tea.combine(combineAdd_in= ""):
-            return self.price + .75
+            self.price = self.price + .75
                     
             
     def __str__(self):
@@ -373,7 +394,7 @@ class Worker:
         """Worker will recommend a random tea available at the TeaHouse.
          
         Args:
-            teaH(TeaHouse): the teaHouse that the worker works in.
+            tea(TeaHouse): the teaHouse that the worker works in. Deafults to none.
          
         Return:
             tea_rec(string): A tea recommendation
@@ -435,9 +456,27 @@ class Cashier(Worker):
         return has_paid
     
     def recommend_tea(self, teaHouse):
+        """Recommends tea to the customer.
+
+        Args:
+            teaHouse (TeaHouse): the teahouse the worker is a part of. 
+
+        Returns:
+            string: a tea recommendation
+        """        
         return super().recommend_tea(teaHouse)
     
     def run(self, teahouse, customer):
+        """Runs the methods in the cashier class.
+
+        Args:
+            teahouse (TeaHouse): The teahouse the cashier is in.
+            customer (Customer): The customer the cashier is handling.
+            
+        Side effects:
+            Print: Prints strings to the console.
+            Input: Takes user input.
+        """        
         while True:
             print(f'''Hello, {self.name}. What would you like to do?\n
                   0 : Take payment 
@@ -528,9 +567,26 @@ class Waiter(Worker):
         return True if customer.money >= total else print("Customer does not have sufficient amount of money for their order.")
         
     def recommend_tea(self, teaHouse):
+        """Recommends tea to the customer.
+
+        Args:
+            teaHouse (TeaHouse): the teahouse the worker is a part of. 
+
+        Returns:
+            string: a tea recommendation
+        """        
         return super().recommend_tea(teaHouse)
     
     def run(self, teahouse):
+        """Runs the methods in the waiter class.
+
+        Args:
+            teahouse (TeaHouse): The teahouse the waiter is in.
+            
+        Side effects:
+            print: prints strings to the console
+            input: takes in user inputs.
+        """        
         dialogue = []
         with open("dialogue.txt", 'r',  encoding = 'utf-8') as f:
             for l in f:
@@ -595,6 +651,8 @@ class Waiter(Worker):
 
 
 def main():
+    """Runs the teahouse program.
+    """    
     th = TeaHouse('Jasmine Dragon')
     t1 = Tea(TEA_TYPE[0], 'hot', ADD_INS[0])
     t2 = Tea(TEA_TYPE[2], 'cold', ADD_INS[2])
