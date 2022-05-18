@@ -3,17 +3,19 @@ INST326 Final Project
 
 
 ## Files
-- order_history.csv
-- teahouse.py
-- testing_teahouse.ipynb
-- dialogue.txt
+- order_history.csv: This is a file used to generate a dataframe and acts as the history of the tea house. Used for pandas and seaborn.
+- teahouse.py : This is the main file with all the classes and functions in one place. This is the file you have to run.
+- testing_teahouse.ipynb: This is useless for the program, but it was the notebook we used to test code and do the presentation.
+- dialogue.txt: This is used to randomly pick a prompt when user is logged in as a cashier. 
 
 ## Running the program
-You can run the program with <`python` or `python3`> `teahouse.py`. 
+You can run the program with <`python`/`python3`> `teahouse.py`. 
 Upon starting the program, you can choose to be a `waiter`, `cashier`, or a `customer`.
-A waiter can take/deliver orders and check order history.
-A cashier can handle payments and check order history.
-A customer can order tea and make payments.
+No matter who you choose, you have to first enter your name. This name will be used to generate the appropriate class.
+- A waiter can take orders and check order history.
+- A cashier can take payments check order history, and sort the list of customers.
+- A customer can order tea, make a payment, and ask for tea recommendations.
+Please enter the numbers shown to make your selection. From here on out, you can enter the numbers to make a choice, and type in the appropriate words when asked any questions. The last option will always be `exit` which you can use to close the program. 
 
 ## Output
 **If you are a customer:**
@@ -48,6 +50,7 @@ All of the data will be output as bar graphs.
 - Teahouse: plot_data (Uses pandas and groupby method)
 - Teahouse: plot_data (Uses seaborn to plot bar graphs, uses matplotlib to display the graph)
 - Global Variables : Prices (Uses sequence unpacking)
+- main() function
 
 **Ashley Trang**
 - Tea: __init__ method (optional parameters/keyword arguments)

@@ -657,8 +657,8 @@ def main():
     t1 = Tea(TEA_TYPE[0], 'hot', ADD_INS[0])
     t2 = Tea(TEA_TYPE[2], 'cold', ADD_INS[2])
     c1 = Customer('Rand', 10.25)
-    c2 = Customer('Molly', 10.25)
-    c3 = Customer('Jasmine', 10.25)
+    c2 = Customer('Egwene', 10.25)
+    c3 = Customer('Nynaeve', 10.25)
     w1 = Cashier('Perrin')
     w2 = Waiter('Mat')
     
